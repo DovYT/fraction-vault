@@ -1,0 +1,7 @@
+# חומרי הייחוס (עמודי ספר וסרטון) – לא מפרסמים
+*.jpeg
+*.jpg
+*.mp4
+.claude/
+.DS_Store
+node_modules/

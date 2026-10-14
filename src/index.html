@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>סוכני הכספת DIGITAL – שעשועון השברים הגדול</title>
+<meta name="description" content="שעשועון שברים לכיתה ד׳: שבר מדומה ומספר מעורב בשלישים ובשישיות. DIGITAL – יפעת ויסמן קרמר | מובילה טכנו פדגוגיה">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231d3fb5'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23ffcf3f'/%3E%3C/svg%3E">
+<style>/*__CSS__*/</style>
+</head>
+<body data-screen="splash">
+
+<div id="studio" aria-hidden="true">
+  <div class="dots"></div>
+  <div class="spot s1"></div><div class="spot s2"></div><div class="spot s3"></div><div class="spot gold" style="left:33%"></div>
+  <div class="floor"></div><div class="stage"></div>
+  <div class="bigvault" id="bigvault"></div>
+  <div class="vignette"></div>
+</div>
+<div class="rays" id="rays" aria-hidden="true"></div>
+<div id="live" class="sr" aria-live="polite" role="status"></div>
+
+<header id="bar" hidden>
+  <span class="brand" data-brand></span>
+  <div class="digits" id="digits" role="group" aria-label="ספרות הקוד שנאספו"></div>
+  <span class="timer" id="timer" hidden aria-label="שעון מעודד" title="שעון מעודד – ללא לחץ"></span>
+  <button class="ibtn" id="btnMusic" aria-pressed="true" title="מוזיקה">🎵 מוזיקה</button>
+  <button class="ibtn" id="btnSfx" aria-pressed="true" title="אפקטים">🔊 אפקטים</button>
+  <button class="ibtn" id="btnFull" title="מסך מלא">⛶ מסך מלא</button>
+  <button class="ibtn" id="btnSettings">⚙ הגדרות למורה</button>
+  <button class="ibtn" id="btnNewBar">↺ התחלת משחק חדש</button>
+</header>
+
+<main id="app">
+  <section id="s-splash" class="screen on" aria-labelledby="h-splash">
+    <div class="splash center">
+      <div class="logo" data-brand></div>
+      <h1 class="title" id="h-splash">סוכני הכספת <span data-brand></span><small>שעשועון השברים הגדול</small></h1>
+      <p class="sigbig" data-sig></p>
+      <div class="choice" id="splashBtns"></div>
+      <p><button class="link" id="splashSettings">⚙ הגדרות למורה</button></p>
+    </div>
+  </section>
+
+  <section id="s-intro" class="screen" aria-label="פתיח התוכנית">
+    <button class="btn ghost skip" id="skipIntro">דילוג על הפתיח ⏭</button>
+    <div class="intro-stage" id="introStage"></div>
+  </section>
+
+  <section id="s-setup" class="screen" aria-labelledby="h-setup">
+    <div class="panel">
+      <h2 id="h-setup">מי נכנס לאולפן?</h2>
+      <div class="choice" role="group" aria-label="סוג משחק">
+        <button class="btn" id="modeSolo" aria-pressed="true">🙋 משחק יחיד</button>
+        <button class="btn" id="modePair" aria-pressed="false">🤝 משחק בזוג</button>
+      </div>
+      <label class="fld">שם הסוכן/ת <input class="txt" id="name1" maxlength="20" autocomplete="off"></label>
+      <label class="fld" id="name2wrap" hidden>שם הסוכן/ת השני/ה <input class="txt" id="name2" maxlength="20" autocomplete="off"></label>
+      <p class="legend">השמות נשמרים רק במחשב הזה ואינם נשלחים לשום מקום.</p>
+      <p class="center"><button class="btn gold big" id="btnReady">אנחנו מוכנים!</button></p>
+    </div>
+  </section>
+
+  <section id="s-welcome" class="screen center" aria-live="polite">
+    <div class="panel" style="margin-top:6vh">
+      <h2 id="welcomeTitle"></h2>
+      <div class="agents" id="agents"></div>
+      <p class="center"><button class="btn gold big" id="btnGoTask" hidden>לשלב הראשון!</button></p>
+    </div>
+  </section>
+
+  <section id="s-task" class="screen"><div id="taskRoot"></div></section>
+
+  <section id="s-vault" class="screen" aria-labelledby="h-vault">
+    <div class="vaultwrap center">
+      <h2 id="h-vault" class="sr">פתיחת הכספת</h2>
+      <div class="vgrid"><div class="vleft">
+      <div class="bubble" id="vbubble" style="max-width:520px;margin-inline:auto"></div>
+      <div class="vault" id="vault" role="img" aria-label="כספת גדולה">
+        <div class="body"></div><div class="inside">💎</div>
+        <div class="door"><i class="bolt"></i><i class="bolt"></i><i class="bolt"></i><i class="bolt"></i><i class="bolt"></i><div class="dial">D</div><i class="handle"></i></div>
+      </div>
+      </div><div class="vright">
+      <div id="vhost" style="width:104px"></div>
+      <div id="codeui">
+        <p class="legend">הקלידו את הקוד בן חמש הספרות. הספרות שאספתם מופיעות למעלה.</p>
+        <div class="codeview" id="codeview" aria-live="polite"></div>
+        <div class="keypad" id="keypad" role="group" aria-label="מקלדת הקוד"></div>
+        <p id="codemsg" class="legend" role="status" style="min-height:1.6em;font-size:1.1rem"></p>
+      </div>
+      <div class="fin" id="fin">
+        <h2 id="finTitle"></h2><p id="finText"></p>
+        <p class="sigbig" style="display:inline-block"><b data-brand></b> · <span data-sig></span></p>
+        <p><button class="btn gold big" id="toCert">🎓 לתעודת הסיום</button></p>
+      </div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s-cert" class="screen" aria-label="תעודת סיום">
+    <div class="cert" id="cert">
+      <div class="seal" aria-hidden="true">🏅</div>
+      <div class="cbrand" data-brand></div>
+      <h2 id="certTitle"></h2>
+      <p><span id="certPre"></span><span class="cname" id="certName"></span><span id="certPost"></span></p>
+      <div class="cfoot"><b data-brand></b><span data-sig></span></div>
+    </div>
+    <div class="certtools">
+      <label class="fld" style="margin:0">שם לתעודה: <input class="txt" id="certInput" maxlength="40" style="width:260px;display:inline-block"></label>
+      <button class="btn gold" id="btnPrint">🖨 הדפסה</button>
+      <button class="btn ghost" id="btnBackVault">חזרה לכספת</button>
+      <p class="note">בחלון ההדפסה אפשר לבחור ביעד "שמירה כ־PDF" כדי לשמור קובץ.</p>
+    </div>
+  </section>
+
+  <section id="s-settings" class="screen" aria-labelledby="h-set">
+    <div class="panel" style="max-width:860px">
+      <h2 id="h-set">הגדרות למורה</h2>
+      <div class="set" id="setList"></div>
+      <div id="demoTools" hidden><h3>מצב הדגמה כיתתית – מעבר חופשי</h3><div class="jump" id="jump"></div></div>
+      <div class="solutions" id="solutions" hidden></div>
+      <p class="center"><button class="btn gold" id="setBack">חזרה למשחק</button></p>
+    </div>
+  </section>
+</main>
+
+<footer class="sig" id="sigbar"><b data-brand></b><span data-sig></span></footer>
+<div id="modal" role="presentation"></div>
+<script>/*__JS__*/</script>
+</body>
+</html>

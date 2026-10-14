@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>סוכני הכספת DIGITAL – שעשועון השברים הגדול</title>
+<meta name="description" content="שעשועון שברים לכיתה ד׳: שבר מדומה ומספר מעורב בשלישים ובשישיות. DIGITAL – יפעת ויסמן קרמר | מובילה טכנו פדגוגיה">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231d3fb5'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23ffcf3f'/%3E%3C/svg%3E">
+<style>/* DIGITAL – סוכני הכספת */
+:root{
+  --bg:#060a22; --bg2:#0d1550; --blue:#1d3fb5; --purple:#6b2fd6; --teal:#1fe0cf; --gold:#ffcf3f;
+  --green:#3ddc84; --orange:#ff9d3c; --ink:#ffffff; --muted:#b9c6ff; --panel:rgba(12,22,70,.88);
+  --line:rgba(140,170,255,.35); --sw:190px;
+  --font:"Heebo","Assistant","Rubik","Segoe UI","Arial Hebrew",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);overflow-x:hidden;font-size:18px;line-height:1.45;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.demo{font-size:22px}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--gold);outline-offset:3px;border-radius:8px}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- אולפן (רקע) ---------- */
+#studio{position:fixed;inset:0;z-index:0;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 30%,#1c2a8a 0%,#0b1245 45%,#050818 100%)}
+#studio .dots{position:absolute;inset:0;opacity:.5;
+  background-image:radial-gradient(circle,rgba(160,190,255,.55) 1px,transparent 1.5px);background-size:46px 46px;
+  mask-image:linear-gradient(#000,transparent 60%)}
+#studio .floor{position:absolute;left:-20%;right:-20%;bottom:0;height:42%;
+  background:linear-gradient(180deg,rgba(25,35,110,.0),rgba(18,26,90,.9) 30%,#0a0f36 100%);
+  border-top:2px solid rgba(120,160,255,.25)}
+#studio .floor::after{content:"";position:absolute;inset:0;opacity:.28;
+  background:repeating-linear-gradient(90deg,rgba(130,170,255,.5) 0 1px,transparent 1px 90px),
+             repeating-linear-gradient(0deg,rgba(130,170,255,.35) 0 1px,transparent 1px 48px)}
+#studio .stage{position:absolute;left:50%;bottom:8%;width:min(1100px,90vw);height:200px;transform:translateX(-50%);
+  border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#2a3fb0 0%,#14206d 55%,#0a1148 100%);
+  box-shadow:0 0 0 6px rgba(31,224,207,.55),0 0 0 14px rgba(255,207,63,.25),0 20px 80px rgba(31,224,207,.35)}
+#studio .stage::after{content:"";position:absolute;left:12%;right:12%;top:20%;bottom:20%;border-radius:50%;
+  border:2px dashed rgba(255,207,63,.45)}
+.spot{position:absolute;top:-8%;width:34vw;height:120%;transform-origin:50% 0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(120,170,255,.12) 40%,transparent 80%);
+  clip-path:polygon(47% 0,53% 0,100% 100%,0 100%);opacity:0;transition:opacity 1.6s ease}
+#studio.lit .spot{opacity:.55}
+.spot.s1{left:8%;animation:sway1 14s ease-in-out infinite}
+.spot.s2{left:33%;animation:sway2 17s ease-in-out infinite}
+.spot.s3{right:8%;animation:sway1 19s ease-in-out infinite reverse}
+.spot.gold{background:linear-gradient(180deg,rgba(255,207,63,.55),rgba(255,207,63,.1) 45%,transparent 85%)}
+#studio.dark .spot{opacity:0}
+#studio.dark .spot.gold{opacity:.8;animation:none;transform:rotate(0)}
+@keyframes sway1{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(10deg)}}
+@keyframes sway2{0%,100%{transform:rotate(12deg)}50%{transform:rotate(-8deg)}}
+#studio .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.55) 100%);transition:background 1.2s}
+#studio.dark .vignette{background:radial-gradient(ellipse at 50% 45%,transparent 12%,rgba(0,0,0,.9) 62%)}
+#studio.blackout{background:#02030c}
+#studio .bigvault{position:absolute;left:50%;top:46%;width:min(46vh,380px);transform:translate(-50%,-50%);opacity:.0;transition:opacity 1.4s}
+body[data-screen=splash] #studio .bigvault,body[data-screen=intro] #studio .bigvault,
+body[data-screen=setup] #studio .bigvault,body[data-screen=welcome] #studio .bigvault{opacity:.9}
+body[data-screen=intro] #studio .bigvault{opacity:.0}
+
+/* ---------- מסגרת כללית ---------- */
+#bar{position:relative;z-index:5;display:flex;align-items:center;gap:10px;padding:8px 16px;flex-wrap:wrap;
+  background:linear-gradient(180deg,rgba(5,8,30,.92),rgba(5,8,30,.6));border-bottom:2px solid var(--line)}
+#bar .brand{font-weight:900;letter-spacing:.18em;color:var(--gold);font-size:1.1rem}
+#bar .digits{display:flex;gap:8px;margin-inline-start:auto;margin-inline-end:auto;direction:ltr}
+.dslot{width:46px;height:54px;border-radius:10px;border:3px solid var(--line);display:grid;place-items:center;
+  font-size:1.7rem;font-weight:900;background:rgba(5,10,40,.8);color:var(--muted)}
+.dslot.got{border-color:var(--gold);color:var(--gold);box-shadow:0 0 18px rgba(255,207,63,.55);background:rgba(60,40,0,.55)}
+.dslot.got::before{content:"🔑";font-size:.7rem;position:absolute;transform:translate(0,-26px)}
+.dslot{position:relative}
+.ibtn{border:2px solid var(--line);background:rgba(10,20,70,.85);border-radius:12px;padding:6px 12px;min-height:44px;font-weight:700}
+.ibtn:hover{border-color:var(--teal)}
+.ibtn[aria-pressed=false]{opacity:.7;text-decoration:line-through}
+.timer{font-variant-numeric:tabular-nums;color:var(--muted);padding:0 6px}
+
+#app{position:relative;z-index:2;min-height:calc(100vh - 140px);padding:16px 18px 70px}
+.screen{display:none;max-width:1180px;margin:0 auto;animation:fadein .6s ease}
+.screen.on{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.center{text-align:center}
+.sig{position:fixed;z-index:6;left:0;right:0;bottom:0;text-align:center;padding:6px 10px;font-size:.88rem;color:var(--muted);
+  background:linear-gradient(0deg,rgba(3,5,20,.95),rgba(3,5,20,.0))}
+.sig b{color:var(--gold);letter-spacing:.2em;margin-inline-end:8px}
+
+/* ---------- כפתורים ---------- */
+.btn{border:0;border-radius:16px;padding:12px 26px;font-weight:800;font-size:1.15rem;min-height:52px;
+  background:linear-gradient(180deg,#3558e6,#1d3fb5);box-shadow:0 5px 0 #0f2370,0 8px 20px rgba(0,0,0,.4);transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0f2370}
+.btn.gold{background:linear-gradient(180deg,#ffdd6b,#f0a912);color:#2b1c00;box-shadow:0 5px 0 #a96d00,0 8px 24px rgba(255,200,60,.35)}
+.btn.big{font-size:1.5rem;padding:16px 40px}
+.btn.ghost{background:rgba(10,20,70,.7);box-shadow:none;border:2px solid var(--line)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.link{background:none;border:0;color:var(--muted);text-decoration:underline;padding:8px;font-size:1rem}
+
+/* ---------- שברים ---------- */
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.05;direction:ltr;margin:0 .12em;
+  font-weight:800;font-size:1em}
+.frac .n{padding:0 .2em .06em;border-bottom:.09em solid currentColor}
+.frac .d{padding:.06em .2em 0}
+.mixed{display:inline-flex;align-items:center;gap:.1em;direction:ltr;vertical-align:middle;font-weight:800}
+.eq{display:inline-flex;align-items:center;gap:.35em;direction:ltr;unicode-bidi:isolate;font-size:2.2rem;flex-wrap:wrap;justify-content:center}
+.eq .op{padding:0 .1em}
+.eq.sm{font-size:1.5rem}
+.frac input,.mixed input{vertical-align:middle}
+input.num{width:2.1em;height:1.5em;font:inherit;font-weight:800;text-align:center;color:#06103a;background:#fff;border:3px solid var(--gold);
+  border-radius:10px;direction:ltr;margin:0 .1em;font-size:.8em}
+input.num:focus{outline:4px solid var(--teal)}
+input.num.bad{border-color:var(--orange);background:#fff3e2}
+input.num.ok{border-color:var(--green);background:#e7ffee}
+
+/* ---------- רצועות ---------- */
+.strips{display:flex;flex-wrap:wrap;gap:16px 22px;align-items:flex-end;justify-content:center;direction:ltr}
+.stripwrap{position:relative;padding-top:26px}
+.strip{display:flex;width:var(--sw);height:44px;border:3px solid #fff;border-radius:9px;overflow:hidden;background:#e9eeff;direction:ltr}
+.strip .cell{flex:1;border-inline-end:2px solid rgba(20,30,100,.55);background:#eef2ff;padding:0;border-top:0;border-bottom:0;border-inline-start:0;border-radius:0}
+.strip .cell:last-child{border-inline-end:0}
+.strip .cell.on{background:repeating-linear-gradient(45deg,#1fe0cf 0 7px,#12b3a6 7px 14px)}
+button.cell{cursor:pointer}
+button.cell:hover{filter:brightness(.92)}
+.stripwrap.whole .strip{border-color:var(--gold);box-shadow:0 0 0 4px rgba(255,207,63,.45),0 0 22px rgba(255,207,63,.5)}
+.stripwrap .wbadge{position:absolute;top:0;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:6px;white-space:nowrap;
+  background:var(--gold);color:#2b1c00;font-weight:900;border-radius:20px;padding:0 12px;font-size:1rem}
+.stripwrap.whole .wbadge{display:flex}
+.stripwrap .arc{position:absolute;left:0;right:0;top:12px;height:14px;border-top:4px solid var(--gold);border-radius:50% 50% 0 0/100% 100% 0 0;display:none}
+.stripwrap.whole .arc{display:block}
+.legend{font-size:1rem;color:var(--muted);margin-top:6px}
+
+/* ---------- מבנה משחק ---------- */
+.gamegrid{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:18px;align-items:start}
+.taskcol{min-width:0}
+.hostcol{position:sticky;top:8px;display:flex;flex-direction:column;align-items:center}
+.bubble{position:relative;background:#fff;color:#0b1148;border-radius:20px;padding:12px 16px;font-weight:700;font-size:1.02rem;margin-bottom:12px;
+  box-shadow:0 6px 20px rgba(0,0,0,.4);min-height:60px}
+.bubble::after{content:"";position:absolute;bottom:-14px;right:60px;border:14px solid transparent;border-top-color:#fff;border-bottom:0}
+.host{width:190px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))}
+.host .mouth{transform-origin:50% 50%}
+.host.talk .mouth{animation:talk .5s ease-in-out 4}
+@keyframes talk{50%{transform:scaleY(1.7)}}
+.hostname{margin-top:4px;color:var(--gold);font-weight:800;font-size:.9rem}
+.theader{display:flex;align-items:baseline;flex-wrap:wrap;gap:12px;margin:4px 0 6px}
+.theader h2{margin:0;font-size:2rem;text-shadow:0 0 18px rgba(31,224,207,.6)}
+.tnum{background:var(--purple);border-radius:20px;padding:2px 14px;font-weight:800}
+.turn{margin-inline-start:auto;background:rgba(255,207,63,.15);border:2px solid var(--gold);border-radius:20px;padding:2px 14px;color:var(--gold);font-weight:800}
+.instr{font-size:1.25rem;font-weight:700;margin:4px 0 10px;background:rgba(10,20,70,.75);border:2px solid var(--line);border-radius:12px;padding:8px 14px}
+.led{position:relative;background:var(--panel);border:4px solid var(--teal);border-radius:22px;padding:18px;min-height:320px;
+  box-shadow:0 0 0 3px rgba(107,47,214,.6),0 0 40px rgba(31,224,207,.25),inset 0 0 60px rgba(30,60,200,.35);transition:box-shadow .5s,border-color .5s}
+.led.ok{border-color:var(--green);box-shadow:0 0 0 4px rgba(255,207,63,.7),0 0 50px rgba(61,220,132,.55),inset 0 0 60px rgba(61,220,132,.2)}
+.led.bad{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,157,60,.5),0 0 40px rgba(255,157,60,.4)}
+.lockov{position:absolute;inset:0;border-radius:18px;background:rgba(3,6,30,.82);display:grid;place-items:center;z-index:10;text-align:center;font-size:1.6rem;font-weight:800}
+.lockov .lk{font-size:3.4rem;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.fb{margin:12px 0 0;min-height:74px;border-radius:14px;padding:10px 16px;font-size:1.1rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(61,220,132,.18);border:3px solid var(--green)}
+.fb.bad{background:rgba(255,157,60,.18);border:3px solid var(--orange)}
+.fb .ic{font-weight:900;margin-inline-end:8px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;align-items:center}
+.actions .grow{margin-inline-start:auto}
+
+/* ---------- חלקים בגרירה ---------- */
+.tray{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;min-height:68px;padding:10px;border-radius:14px;border:3px dashed var(--line);margin:10px 0}
+.piece{border:3px solid #fff;border-radius:10px;background:repeating-linear-gradient(45deg,#1fe0cf 0 7px,#12b3a6 7px 14px);color:#04302c;
+  font-weight:900;min-width:64px;height:62px;font-size:1.2rem;display:grid;place-items:center;touch-action:none;user-select:none;padding:0 6px;font-size:1rem}
+.piece.sel,.card.sel,.pz.sel{outline:5px solid var(--gold);outline-offset:3px;transform:translateY(-3px)}
+.piece.dragging,.card.dragging,.pz.dragging{opacity:.3}
+.dragghost{position:fixed;z-index:1000;pointer-events:none;transform:translate(-50%,-50%) scale(1.08);box-shadow:0 12px 30px rgba(0,0,0,.6)}
+.zone{border-radius:12px}
+.zone.hover{outline:4px solid var(--teal);outline-offset:3px}
+.zone[tabindex]{cursor:pointer}
+.slotrow{display:flex;gap:6px;direction:ltr}
+.placed{border:0;border-radius:0;flex:1;min-width:0;height:100%}
+
+/* ---------- משימה 3 ---------- */
+.rows3{display:grid;gap:10px}
+.row3{display:grid;grid-template-columns:auto 1fr 1fr;gap:12px;align-items:center;background:rgba(5,10,50,.6);border:3px solid var(--line);border-radius:14px;padding:10px 12px}
+.row3.ok{border-color:var(--green);background:rgba(61,220,132,.12)}
+.row3.bad{border-color:var(--orange)}
+.row3 .strips{justify-content:flex-start}
+.slot{min-height:58px;border:3px dashed var(--line);border-radius:12px;display:grid;place-items:center;padding:4px;font-size:1.15rem;text-align:center}
+.slot.full{border-style:solid;border-color:var(--teal)}
+.card{border:3px solid #fff;border-radius:12px;background:#fff;color:#0b1148;font-weight:800;padding:6px 14px;min-width:90px;min-height:52px;display:grid;place-items:center;touch-action:none;user-select:none;font-size:1.25rem}
+.card.name{background:#fff6d6}
+.mark{font-weight:900;margin-inline-start:6px}
+.ask{grid-column:1/-1;background:rgba(255,157,60,.2);border-radius:8px;padding:4px 10px;font-weight:700}
+
+/* ---------- משימה 4 ---------- */
+.reps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.rep{border:3px solid var(--line);background:#fff;color:#0b1148;border-radius:14px;min-height:96px;display:grid;place-items:center;font-size:2rem;position:relative;padding:8px}
+.rep[aria-pressed=true]{outline:5px solid var(--gold);outline-offset:3px}
+.rep .tick{position:absolute;top:4px;inset-inline-start:8px;font-size:1rem;font-weight:900}
+.rep.odd{border-color:var(--orange);background:#fff3e2}
+.rep .miniwrap{--sw:110px;transform:none}
+.reasons{display:grid;gap:8px;margin-top:12px}
+.reason{display:flex;gap:10px;align-items:center;background:rgba(5,10,50,.6);border:3px solid var(--line);border-radius:12px;padding:10px 14px;text-align:start;font-size:1.1rem;font-weight:700;width:100%}
+.reason[aria-pressed=true]{border-color:var(--gold);background:rgba(255,207,63,.15)}
+.proof{display:grid;gap:8px;margin-top:10px}
+.proofrow{display:flex;gap:12px;align-items:center;direction:ltr;background:rgba(5,10,50,.55);border-radius:10px;padding:6px 10px}
+.proofrow .lab{min-width:100px;text-align:center;font-size:1.2rem;color:#fff}
+.proofrow.oddrow{outline:3px solid var(--orange)}
+.proofrow .tag{font-weight:900;color:var(--orange)}
+.proofrow .strips{gap:4px}
+.proofrow{--sw:120px}
+
+/* ---------- משימה 5 – פיצות ---------- */
+.pizzaboard{display:grid;grid-template-columns:230px 1fr;gap:14px}
+.pool{background:rgba(5,10,50,.6);border:3px solid var(--line);border-radius:14px;padding:10px}
+.pool h3,.tray3 h3{margin:0 0 6px;font-size:1rem;color:var(--gold)}
+.pieces{display:flex;flex-wrap:wrap;gap:6px;min-height:60px}
+.pz{background:none;border:0;padding:2px;touch-action:none;user-select:none;border-radius:50%}
+.pz svg{width:54px;height:54px;display:block}
+.pz.third svg{width:46px;height:46px}
+.trays{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.tray3{background:rgba(5,10,50,.6);border:3px solid var(--line);border-radius:14px;padding:8px 10px;min-height:150px}
+.tray3.ok{border-color:var(--green);background:rgba(61,220,132,.12)}
+.tray3 .ord{font-size:1.25rem;margin-bottom:4px}
+.tray3 .ord .eq{font-size:1.3rem}
+.tray3.tgt{outline:3px dashed var(--teal)}
+.opbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.opbtns .ibtn{font-size:.95rem}
+.count{font-size:.95rem;color:var(--muted);margin-top:6px}
+
+/* ---------- מסכים ---------- */
+.splash{padding-top:6vh;display:flex;flex-direction:column;align-items:center;gap:14px;min-height:70vh;justify-content:center}
+.logo{font-size:clamp(2rem,6vw,3.6rem);font-weight:900;letter-spacing:.3em;color:var(--gold);text-shadow:0 0 28px rgba(255,207,63,.6)}
+.title{font-size:clamp(2.2rem,6vw,4rem);font-weight:900;margin:0;text-shadow:0 0 30px rgba(31,224,207,.7)}
+.title small{display:block;font-size:.45em;color:var(--teal);font-weight:800;letter-spacing:.05em;margin-top:6px}
+.sigbig{font-size:1.15rem;color:#fff;background:rgba(10,20,70,.75);border:2px solid var(--gold);border-radius:30px;padding:6px 22px}
+.countdown{font-size:9rem;font-weight:900;color:var(--gold);text-shadow:0 0 50px rgba(255,207,63,.8);animation:pop .9s ease}
+@keyframes pop{0%{transform:scale(.4);opacity:0}30%{opacity:1}100%{transform:scale(1.15);opacity:.15}}
+.intro-stage{min-height:68vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity 1s,transform 1s}
+.reveal.in{opacity:1;transform:none}
+.skip{position:fixed;top:12px;inset-inline-start:14px;z-index:20}
+.panel{background:var(--panel);border:3px solid var(--teal);border-radius:20px;padding:22px;max-width:720px;margin:0 auto;box-shadow:0 0 40px rgba(31,224,207,.25)}
+.panel h2{margin-top:0}
+.choice{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.choice .btn[aria-pressed=true]{outline:5px solid var(--gold);background:linear-gradient(180deg,#8a4cf0,#5a22c4)}
+label.fld{display:block;margin:10px 0;font-weight:700;text-align:start}
+input.txt{width:100%;font:inherit;font-size:1.3rem;padding:10px 14px;border-radius:12px;border:3px solid var(--line);background:#fff;color:#06103a;margin-top:4px}
+.agents{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin:20px 0}
+.agent{background:linear-gradient(180deg,#ffdd6b,#f0a912);color:#2b1c00;font-weight:900;font-size:2.2rem;border-radius:20px;padding:14px 34px;
+  transform:translateY(40px) scale(.7);opacity:0;animation:agentin 1s cubic-bezier(.2,1.4,.4,1) forwards;box-shadow:0 0 40px rgba(255,207,63,.7)}
+.agent:nth-child(2){animation-delay:.9s}
+@keyframes agentin{to{transform:none;opacity:1}}
+.agent::before{content:"🕵️ ";font-size:1.6rem}
+
+/* ---------- כספת ---------- */
+.vaultwrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.vault{position:relative;width:min(44vh,340px);aspect-ratio:1;margin:6px auto;perspective:900px;direction:ltr}
+.vault .body{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#5d6ecb,#25308c 55%,#0f1650);
+  border:10px solid #8896e6;box-shadow:0 0 0 6px #1a2370,0 20px 60px rgba(0,0,0,.6),inset 0 0 40px rgba(0,0,30,.6)}
+.vault .inside{position:absolute;inset:7%;border-radius:50%;background:radial-gradient(circle,#fff6c8,#ffd24a 45%,#a56a00 100%);display:grid;place-items:center;font-size:4rem;opacity:0}
+.vault.open .inside{opacity:1;transition:opacity .6s .4s}
+.vault .door{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8e9cf0,#3646b8 55%,#1a2380);border:8px solid #b3bdfb;
+  transform-origin:100% 50%;transition:transform 1.5s cubic-bezier(.5,0,.2,1);box-shadow:inset 0 0 30px rgba(0,0,40,.7);transform-style:preserve-3d}
+.vault.open .door{transform:rotateY(-118deg)}
+.vault .dial{position:absolute;left:50%;top:50%;width:38%;aspect-ratio:1;margin:-19% 0 0 -19%;border-radius:50%;border:6px solid var(--gold);
+  background:radial-gradient(circle,#ffe58a,#c68a0a);display:grid;place-items:center;font-weight:900;color:#3a2600;font-size:1.3rem;transition:transform 1.2s}
+.vault .dial::before{content:"";position:absolute;width:6px;height:46%;background:#3a2600;top:6%;border-radius:3px}
+.vault.spin .dial{transform:rotate(720deg)}
+.vault .bolt{position:absolute;left:50%;top:50%;width:11%;height:11%;margin:-5.5% 0 0 -5.5%;border-radius:50%;background:#d9e0ff;border:3px solid #6a79d8;transition:transform 1s}
+.vault .bolt:nth-child(1){transform:rotate(0deg) translateY(-155%)}
+.vault .bolt:nth-child(2){transform:rotate(72deg) translateY(-155%)}
+.vault .bolt:nth-child(3){transform:rotate(144deg) translateY(-155%)}
+.vault .bolt:nth-child(4){transform:rotate(216deg) translateY(-155%)}
+.vault .bolt:nth-child(5){transform:rotate(288deg) translateY(-155%)}
+.vault.spin .bolt:nth-child(1){transform:rotate(360deg) translateY(-155%)}
+.vault.spin .bolt:nth-child(2){transform:rotate(432deg) translateY(-155%)}
+.vault.spin .bolt:nth-child(3){transform:rotate(504deg) translateY(-155%)}
+.vault.spin .bolt:nth-child(4){transform:rotate(576deg) translateY(-155%)}
+.vault.spin .bolt:nth-child(5){transform:rotate(648deg) translateY(-155%)}
+.vault .bolt.key{background:var(--gold);border-color:#a96d00}
+.vault .bolt.key::after{content:"🔑";position:absolute;inset:-60% -60%;display:grid;place-items:center;font-size:1.2rem}
+.vault .handle{position:absolute;right:6%;top:46%;width:8%;height:8%;border-radius:50%;background:var(--gold)}
+.codeview{display:flex;gap:10px;direction:ltr;justify-content:center}
+.codeview .dslot{width:58px;height:70px;font-size:2.2rem;color:#fff}
+.keypad{display:grid;grid-template-columns:repeat(3,76px);gap:10px;direction:ltr;justify-content:center}
+.keypad .btn{padding:0;min-height:62px;font-size:1.6rem}
+.rays{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;
+  background:conic-gradient(from 0deg at 50% 45%,rgba(255,207,63,.0),rgba(255,207,63,.45) 5%,rgba(255,207,63,.0) 10%,rgba(255,207,63,.45) 15%,rgba(255,207,63,0) 20%,rgba(255,207,63,.45) 25%,rgba(255,207,63,0) 30%,rgba(255,207,63,.45) 35%,rgba(255,207,63,0) 40%,rgba(255,207,63,.45) 45%,rgba(255,207,63,0) 50%,rgba(255,207,63,.45) 55%,rgba(255,207,63,0) 60%,rgba(255,207,63,.45) 65%,rgba(255,207,63,0) 70%,rgba(255,207,63,.45) 75%,rgba(255,207,63,0) 80%,rgba(255,207,63,.45) 85%,rgba(255,207,63,0) 90%,rgba(255,207,63,.45) 95%,rgba(255,207,63,0));
+  mask-image:radial-gradient(circle at 50% 45%,#000 0,transparent 70%);transition:opacity 1.2s}
+.rays.on{opacity:1;animation:slowspin 40s linear infinite}
+@keyframes slowspin{to{transform:rotate(360deg)}}
+.confetti{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;top:-20px;width:10px;height:16px;border-radius:2px;animation:fall 3.4s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.fin{display:none;text-align:center}
+.fin.on{display:block;animation:fadein 1s}
+.fin h2{font-size:clamp(1.8rem,4vw,3rem);color:var(--gold);text-shadow:0 0 24px rgba(255,207,63,.6);margin:6px 0}
+.fin p{max-width:760px;margin:0 auto 14px;font-size:1.25rem}
+.sparkles{pointer-events:none}
+
+/* ---------- תעודה ---------- */
+.cert{background:#fffaf0;color:#1d2a63;border:14px double #c8921a;border-radius:10px;max-width:900px;margin:0 auto;padding:34px 40px;text-align:center;
+  box-shadow:0 0 0 6px #1d3fb5,0 20px 60px rgba(0,0,0,.6);position:relative}
+.cert .cbrand{font-weight:900;letter-spacing:.35em;font-size:2rem;color:#1d3fb5}
+.cert h2{font-size:2.6rem;margin:10px 0;color:#7a3dd8}
+.cert .cname{display:inline-block;min-width:260px;border-bottom:3px solid #c8921a;font-size:2rem;font-weight:900;padding:0 12px;color:#1d2a63}
+.cert p{font-size:1.5rem;margin:14px 0}
+.cert .cfoot{margin-top:26px;border-top:2px solid #c8921a;padding-top:12px;font-size:1.15rem}
+.cert .cfoot b{letter-spacing:.3em;color:#1d3fb5;margin-inline-end:10px}
+.cert .seal{font-size:3rem}
+.certtools{max-width:900px;margin:14px auto;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center}
+.certtools .note{flex-basis:100%;text-align:center;color:var(--muted)}
+
+/* ---------- הגדרות ---------- */
+.set{display:grid;gap:10px;margin:14px 0}
+.setrow{display:flex;align-items:center;gap:12px;background:rgba(5,10,50,.6);border:2px solid var(--line);border-radius:12px;padding:10px 14px;justify-content:space-between}
+.setrow .t{font-weight:700}
+.tog{min-width:92px;border-radius:30px;border:3px solid var(--line);background:#222c68;padding:4px 14px;font-weight:800}
+.tog[aria-checked=true]{background:#1d7a52;border-color:var(--green)}
+.tog[aria-checked=true]::before{content:"✓ "}
+.tog[aria-checked=false]::before{content:"✕ "}
+.solutions{background:#fff;color:#0b1148;border-radius:14px;padding:14px 18px;margin-top:10px}
+.solutions li{margin:8px 0}
+.jump{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- חלון אישור ---------- */
+#modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;background:rgba(2,4,20,.8)}
+#modal.on{display:grid}
+#modal .box{background:#10196a;border:4px solid var(--gold);border-radius:20px;padding:24px;max-width:480px;text-align:center}
+#modal .box h3{margin-top:0;font-size:1.5rem}
+#modal .box .row{display:flex;gap:12px;justify-content:center;margin-top:16px}
+
+.toast{position:fixed;z-index:50;top:70px;left:50%;transform:translateX(-50%);background:var(--gold);color:#2b1c00;font-weight:900;padding:10px 24px;border-radius:30px}
+.keyfly{position:fixed;z-index:60;font-size:3rem;pointer-events:none}
+.digitpop{display:grid;place-items:center;gap:6px;padding:10px;text-align:center}
+.digitpop .big{font-size:5rem;font-weight:900;color:var(--gold);text-shadow:0 0 30px rgba(255,207,63,.8);animation:pop2 1s ease}
+@keyframes pop2{from{transform:scale(.2) rotate(-20deg);opacity:0}to{transform:none;opacity:1}}
+
+/* ---------- רספונסיבי ---------- */
+@media (max-width:900px){
+  .gamegrid{grid-template-columns:1fr}
+  .hostcol{position:static;flex-direction:row;align-items:flex-end;gap:10px;order:-1}
+  .host{width:90px;flex:none}.bubble{margin:0;flex:1}.bubble::after{display:none}.hostname{display:none}
+  .pizzaboard{grid-template-columns:1fr}
+  .row3{grid-template-columns:1fr}
+  :root{--sw:150px}
+  .eq{font-size:1.7rem}
+}
+@media (max-height:700px){#studio .stage{height:150px}.countdown{font-size:6rem}}
+
+/* ---------- הפחתת תנועה ---------- */
+body.reduce *,body.reduce *::before,body.reduce *::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+body.reduce .spot{display:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .spot{display:none}
+}
+
+/* ---------- הדפסה ---------- */
+@media print{
+  @page{size:A4 landscape;margin:10mm}
+  body{background:#fff!important;overflow:visible}
+  #studio,#bar,.sig,.certtools,#modal,.skip,.confetti,.rays,.screen:not(#s-cert){display:none!important}
+  #app{padding:0;min-height:0}
+  .screen{animation:none!important;opacity:1!important;transform:none!important}
+  #s-cert{display:block!important;max-width:none}
+  .cert{box-shadow:none;margin:0;max-width:none;border-width:12px;min-height:170mm;display:flex;flex-direction:column;justify-content:center}
+}
+
+/* ---------- תיקונים ---------- */
+#studio:not(.dark) .spot.gold{display:none}
+#studio .bigvault .vault{width:100%;margin:0}
+.rays{z-index:1}
+body[data-screen=splash] #studio .bigvault,body[data-screen=setup] #studio .bigvault,body[data-screen=welcome] #studio .bigvault{opacity:.22}
+body[data-screen=intro] #studio .bigvault{opacity:0}
+body.intro-lit[data-screen=intro] #studio .bigvault{opacity:.3}
+.title,.logo,.sigbig,.countdown{text-shadow:0 3px 14px #000,0 0 30px rgba(31,224,207,.5)}
+.sigbig{background:rgba(6,10,40,.9)}
+.vgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center;min-height:68vh;width:100%}
+.vleft,.vright{display:flex;flex-direction:column;align-items:center;gap:8px}
+.vault{width:min(46vh,380px)}
+.keypad{grid-template-columns:repeat(3,70px)}
+.keypad .btn{min-height:56px}
+@media (max-width:900px){.vgrid{grid-template-columns:1fr}.vault{width:min(34vh,280px)}}
+.fin.on{background:rgba(5,8,34,.72);border-radius:22px;padding:14px 16px}
+</style>
+</head>
+<body data-screen="splash">
+
+<div id="studio" aria-hidden="true">
+  <div class="dots"></div>
+  <div class="spot s1"></div><div class="spot s2"></div><div class="spot s3"></div><div class="spot gold" style="left:33%"></div>
+  <div class="floor"></div><div class="stage"></div>
+  <div class="bigvault" id="bigvault"></div>
+  <div class="vignette"></div>
+</div>
+<div class="rays" id="rays" aria-hidden="true"></div>
+<div id="live" class="sr" aria-live="polite" role="status"></div>
+
+<header id="bar" hidden>
+  <span class="brand" data-brand></span>
+  <div class="digits" id="digits" role="group" aria-label="ספרות הקוד שנאספו"></div>
+  <span class="timer" id="timer" hidden aria-label="שעון מעודד" title="שעון מעודד – ללא לחץ"></span>
+  <button class="ibtn" id="btnMusic" aria-pressed="true" title="מוזיקה">🎵 מוזיקה</button>
+  <button class="ibtn" id="btnSfx" aria-pressed="true" title="אפקטים">🔊 אפקטים</button>
+  <button class="ibtn" id="btnFull" title="מסך מלא">⛶ מסך מלא</button>
+  <button class="ibtn" id="btnSettings">⚙ הגדרות למורה</button>
+  <button class="ibtn" id="btnNewBar">↺ התחלת משחק חדש</button>
+</header>
+
+<main id="app">
+  <section id="s-splash" class="screen on" aria-labelledby="h-splash">
+    <div class="splash center">
+      <div class="logo" data-brand></div>
+      <h1 class="title" id="h-splash">סוכני הכספת <span data-brand></span><small>שעשועון השברים הגדול</small></h1>
+      <p class="sigbig" data-sig></p>
+      <div class="choice" id="splashBtns"></div>
+      <p><button class="link" id="splashSettings">⚙ הגדרות למורה</button></p>
+    </div>
+  </section>
+
+  <section id="s-intro" class="screen" aria-label="פתיח התוכנית">
+    <button class="btn ghost skip" id="skipIntro">דילוג על הפתיח ⏭</button>
+    <div class="intro-stage" id="introStage"></div>
+  </section>
+
+  <section id="s-setup" class="screen" aria-labelledby="h-setup">
+    <div class="panel">
+      <h2 id="h-setup">מי נכנס לאולפן?</h2>
+      <div class="choice" role="group" aria-label="סוג משחק">
+        <button class="btn" id="modeSolo" aria-pressed="true">🙋 משחק יחיד</button>
+        <button class="btn" id="modePair" aria-pressed="false">🤝 משחק בזוג</button>
+      </div>
+      <label class="fld">שם הסוכן/ת <input class="txt" id="name1" maxlength="20" autocomplete="off"></label>
+      <label class="fld" id="name2wrap" hidden>שם הסוכן/ת השני/ה <input class="txt" id="name2" maxlength="20" autocomplete="off"></label>
+      <p class="legend">השמות נשמרים רק במחשב הזה ואינם נשלחים לשום מקום.</p>
+      <p class="center"><button class="btn gold big" id="btnReady">אנחנו מוכנים!</button></p>
+    </div>
+  </section>
+
+  <section id="s-welcome" class="screen center" aria-live="polite">
+    <div class="panel" style="margin-top:6vh">
+      <h2 id="welcomeTitle"></h2>
+      <div class="agents" id="agents"></div>
+      <p class="center"><button class="btn gold big" id="btnGoTask" hidden>לשלב הראשון!</button></p>
+    </div>
+  </section>
+
+  <section id="s-task" class="screen"><div id="taskRoot"></div></section>
+
+  <section id="s-vault" class="screen" aria-labelledby="h-vault">
+    <div class="vaultwrap center">
+      <h2 id="h-vault" class="sr">פתיחת הכספת</h2>
+      <div class="vgrid"><div class="vleft">
+      <div class="bubble" id="vbubble" style="max-width:520px;margin-inline:auto"></div>
+      <div class="vault" id="vault" role="img" aria-label="כספת גדולה">
+        <div class="body"></div><div class="inside">💎</div>
+        <div class="door"><i class="bolt"></i><i class="bolt"></i><i class="bolt"></i><i class="bolt"></i><i class="bolt"></i><div class="dial">D</div><i class="handle"></i></div>
+      </div>
+      </div><div class="vright">
+      <div id="vhost" style="width:104px"></div>
+      <div id="codeui">
+        <p class="legend">הקלידו את הקוד בן חמש הספרות. הספרות שאספתם מופיעות למעלה.</p>
+        <div class="codeview" id="codeview" aria-live="polite"></div>
+        <div class="keypad" id="keypad" role="group" aria-label="מקלדת הקוד"></div>
+        <p id="codemsg" class="legend" role="status" style="min-height:1.6em;font-size:1.1rem"></p>
+      </div>
+      <div class="fin" id="fin">
+        <h2 id="finTitle"></h2><p id="finText"></p>
+        <p class="sigbig" style="display:inline-block"><b data-brand></b> · <span data-sig></span></p>
+        <p><button class="btn gold big" id="toCert">🎓 לתעודת הסיום</button></p>
+      </div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s-cert" class="screen" aria-label="תעודת סיום">
+    <div class="cert" id="cert">
+      <div class="seal" aria-hidden="true">🏅</div>
+      <div class="cbrand" data-brand></div>
+      <h2 id="certTitle"></h2>
+      <p><span id="certPre"></span><span class="cname" id="certName"></span><span id="certPost"></span></p>
+      <div class="cfoot"><b data-brand></b><span data-sig></span></div>
+    </div>
+    <div class="certtools">
+      <label class="fld" style="margin:0">שם לתעודה: <input class="txt" id="certInput" maxlength="40" style="width:260px;display:inline-block"></label>
+      <button class="btn gold" id="btnPrint">🖨 הדפסה</button>
+      <button class="btn ghost" id="btnBackVault">חזרה לכספת</button>
+      <p class="note">בחלון ההדפסה אפשר לבחור ביעד "שמירה כ־PDF" כדי לשמור קובץ.</p>
+    </div>
+  </section>
+
+  <section id="s-settings" class="screen" aria-labelledby="h-set">
+    <div class="panel" style="max-width:860px">
+      <h2 id="h-set">הגדרות למורה</h2>
+      <div class="set" id="setList"></div>
+      <div id="demoTools" hidden><h3>מצב הדגמה כיתתית – מעבר חופשי</h3><div class="jump" id="jump"></div></div>
+      <div class="solutions" id="solutions" hidden></div>
+      <p class="center"><button class="btn gold" id="setBack">חזרה למשחק</button></p>
+    </div>
+  </section>
+</main>
+
+<footer class="sig" id="sigbar"><b data-brand></b><span data-sig></span></footer>
+<div id="modal" role="presentation"></div>
+<script>/* DIGITAL – סוכני הכספת: ספריית מתמטיקה ושמות מספרים בעברית (טהורה, ללא DOM) */
+(function (g) {
+  'use strict';
+  const FV = (g.FV = g.FV || {});
+
+  const toImproper = (w, n, d) => w * d + n;
+  const toMixed = (N, d) => ({ w: Math.floor(N / d), n: N % d, d });
+
+  // מונים לשם זכר (שלישים) ולשם נקבה (שישיות)
+  const NUM_M = [null, 'אחד', 'שני', 'שלושה', 'ארבעה', 'חמישה', 'שישה', 'שבעה', 'שמונה', 'תשעה', 'עשרה'];
+  const NUM_F = [null, 'אחת', 'שתי', 'שלוש', 'ארבע', 'חמש', 'שש', 'שבע', 'שמונה', 'תשע', 'עשר'];
+  // מספר שלם כפי שמופיע בספר הלימוד: "שתיים ושליש", "שלוש ושישית"
+  const WHOLE = [ 'אפס', 'אחד', 'שתיים', 'שלוש', 'ארבע', 'חמש', 'שש', 'שבע', 'שמונה', 'תשע', 'עשר' ];
+  const UNIT = { 3: { one: 'שליש', many: 'שלישים', fem: false }, 6: { one: 'שישית', many: 'שישיות', fem: true } };
+
+  function partName(n, d) {
+    const u = UNIT[d];
+    if (!u) throw new Error('מכנה לא נתמך: ' + d);
+    if (n === 1) return u.one;
+    const word = (u.fem ? NUM_F : NUM_M)[n] || String(n); // מעל עשר – ספרות
+    return word + ' ' + u.many;
+  }
+  function wholeName(w) { return WHOLE[w]; }
+  function mixedName(w, n, d) {
+    if (n === 0) return wholeName(w);
+    if (w === 0) return partName(n, d);
+    return wholeName(w) + ' ו' + partName(n, d);
+  }
+  // קריאה של שבר מדומה, לדוגמה 8/3 – "שמונה שלישים"
+  const fractionName = partName;
+
+  FV.math = { toImproper, toMixed };
+  FV.words = { partName, wholeName, mixedName, fractionName };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/* DIGITAL – סוכני הכספת: כל הנוסחים, הספרות, המיתוג והמשימות במקום אחד.
+   כאן עורכים תוכן. סימון שברים בתוך טקסט: [[5/3]] שבר, [[1 2/3]] מספר מעורב. */
+(function (g) {
+  'use strict';
+  const FV = (g.FV = g.FV || {});
+
+  /* ---------- מיתוג (אין לשנות אות, סימן או רווח) ---------- */
+  FV.BRAND = 'DIGITAL';
+  FV.SIGNATURE = 'יפעת ויסמן קרמר | מובילה טכנו פדגוגיה';
+  FV.TITLE = 'סוכני הכספת';
+  FV.SUBTITLE = 'שעשועון השברים הגדול';
+  FV.STORAGE_KEY = 'fraction-vault-v1';
+
+  /* ---------- קוד הכספת: ספרה אחת לכל משימה ---------- */
+  FV.DIGITS = [1, 6, 3, 2, 1];
+  FV.CODE = FV.DIGITS.join('');                 // "16321"
+
+  /* ---------- המנחה ---------- */
+  FV.HOST = {
+    name: 'נוגה',
+    intro: 'ברוכים הבאים לאולפן! אני נוגה, המנחה. חמש משימות מחכות לכם, וכל אחת מהן מוסיפה ספרה לקוד הכספת.',
+    setup: 'מי נכנס היום לאולפן? בחרו משחק יחיד או משחק בזוג.',
+    ready: 'סוכנים, הביטו בכמות לפני שאתם בוחרים במספר.',
+    lockWait: 'נועלים את התשובה… רגע של מתח!',
+    right: ['ייצוגים שונים — אותה כמות!', 'כל הכבוד! הראיתם את זה בעזרת ההמחשה.', 'מצוין! חשבתם כמו סוכנים אמיתיים.'],
+    wrong: ['כמעט! הביטו שוב בהמחשה ונסו שוב.', 'אל תנחשו: הוכיחו בעזרת ההמחשה.', 'עוד ניסיון אחד, אתם קרובים!'],
+    digit: 'עוד ספרה אחת בדרך לפתיחת הכספת!',
+    vault: 'סוכנים, אספתם את כל הספרות. הגיע הזמן לפתוח את הכספת!',
+    welcome: 'קבלו את הסוכנים שנכנסים עכשיו לאולפן!',
+  };
+
+  /* ---------- משימות ---------- */
+  FV.TASKS = [
+    {
+      title: 'מעבדת השלישים',
+      pre: 'כמה חלקים שווים יוצרים כאן שלם אחד? נסו לקבץ את החלקים לשלמים.',
+      hints: [
+        'סמנו תחילה קבוצה של שלושה שלישים.',
+        'כמה שלישים יש בשלם אחד? מלאו רצועה אחת לגמרי ורק אחר כך בדקו מה נשאר.',
+      ],
+      teacher: 'גוררים 5 חלקי שליש לשתי רצועות: שלושה שלישים ממלאים רצועה ("שלם"), ושני שלישים נשארים ברצועה השנייה. [[5/3]] = [[1 2/3]]. ספרה 1.',
+    },
+    {
+      title: 'מכונת ההמרות',
+      pre: 'בנו קודם את השלמים ורק אחר כך בדקו מה נשאר.',
+      hints: [
+        'כמה חלקים יש בשלם אחד? זה המכנה.',
+        'פתחו את ההמחשה וצבעו את הכמות. אחר כך לחצו "קבצו לשלמים".',
+        'בנו קודם את השלמים ורק אחר כך בדקו מה נשאר. הפעלתי לכם את ההמחשה.',
+      ],
+      teacher: '[[2 2/6]] = [[14/6]]; 2 = [[6/3]]; [[1 5/6]] = [[11/6]]; [[7/3]] = [[2 1/3]]. הכלל: מספר השלמים × המכנה + המונה. ספרה 6.',
+    },
+    {
+      title: 'חדר ההתאמות',
+      pre: 'התאימו לכל רצועה את המספר ואת שם המספר. גררו כרטיסים או בחרו כרטיס ואז את המקום שלו.',
+      hints: [
+        'התחילו ברצועה שקל לכם לקרוא: כמה שלמים מלאים יש בה?',
+        'שימו לב לכמה חלקים חולק כל שלם – לשלושה או לשישה?',
+      ],
+      teacher: '[[2 1/3]] – שתיים ושליש; [[2 2/6]] – שתיים ושתי שישיות; [[3 1/6]] – שלוש ושישית; [[8/3]] = [[2 2/3]] – שתיים ושני שלישים. ספרה 3.',
+    },
+    {
+      title: 'בלשי הייצוגים',
+      pre: 'שלושה ייצוגים מתארים אותה כמות, אחד שונה. מצאו אותו והסבירו.',
+      hints: [
+        'השוו את הציורים ולא רק את צורת הכתיבה.',
+        'נסו לפרק כל מספר לחלקים שווים ולבדוק איפה נגמרת הכמות.',
+      ],
+      teacher: 'א: היוצא דופן [[2/6]]. ב: [[7/6]]. ג: [[4/6]]. בכל קבוצה שלושה ייצוגים שווים והרצועות מוכיחות זאת. ספרה 2.',
+    },
+    {
+      title: 'מפעל הפיצות הסודי',
+      pre: 'כל פיצה מחולקת לשלושה חלקים שווים. הרכיבו כל הזמנה בלי חוסר ובלי עודף.',
+      hints: [
+        'כמה שלישים יש בפיצה שלמה? שלושה שלישים מתחברים לפיצה אחת.',
+        'בנו קודם את הפיצות השלמות של ההזמנה, ואחר כך הוסיפו את השלישים שנותרו.',
+      ],
+      teacher: 'בסך הכול 34 שלישים: 6 פיצות שלמות ו־16 שלישים. כל הזמנה: 5/3 = פיצה + 2 שלישים; 1/3 = שליש; 6/3 = 2 פיצות; 4/3 = פיצה + שליש; 8/3 = 2 פיצות + 2 שלישים; 10/3 = 3 פיצות + שליש. ספרה 1.',
+    },
+  ];
+
+  /* משימה 2 – ארבעת התרגילים. kind: mixed (מספר מעורב ← שבר מדומה), imp (שבר מדומה ← מספר מעורב) */
+  FV.T2 = [
+    { kind: 'mixed', w: 2, n: 2, d: 6, ans: 14 },
+    { kind: 'mixed', w: 2, n: 0, d: 3, ans: 6 },
+    { kind: 'mixed', w: 1, n: 5, d: 6, ans: 11 },
+    { kind: 'imp', N: 7, d: 3, aw: 2, an: 1 },
+  ];
+
+  /* משימה 3 – שורות: רצועה + כרטיס מספר + כרטיס שם.
+     askNum / askName – שאלות מנחות כאשר ההתאמה שגויה (לא חושפות את התשובה). */
+  FV.T3 = [
+    { w: 2, n: 1, d: 3, numCard: { w: 2, n: 1, d: 3 },
+      askNum: 'כמה שלמים מלאים יש בציור – שניים או שלושה? וכמה חלקים צבועים ברצועה האחרונה?',
+      askName: 'לכמה חלקים חולק כל שלם בציור – לשלושה או לשישה?' },
+    { w: 2, n: 2, d: 6, numCard: { w: 2, n: 2, d: 6 },
+      askNum: 'ספרו את הרצועות המלאות, ואז את החלקים הצבועים ברצועה האחרונה.',
+      askName: 'האם כל שלם מחולק לשלישים או לשישיות? כמה חלקים צבועים ברצועה האחרונה?' },
+    { w: 3, n: 1, d: 6, numCard: { w: 3, n: 1, d: 6 },
+      askNum: 'האם הציור מציג שני שלמים או שלושה? וכמה חלקים נוספים צבועים?',
+      askName: 'האם כל שלם מחולק לשישה חלקים? כמה חלקים צבועים מעבר לשלמים?' },
+    { w: 2, n: 2, d: 3, numCard: { n: 8, d: 3 },
+      askNum: 'כמה שלישים צבועים בסך הכול? ספרו את כל החלקים הצבועים.',
+      askName: 'כמה שלמים מלאים אפשר לקבץ מן השלישים הצבועים, וכמה שלישים נשארים?' },
+  ];
+
+  /* משימה 4 – קבוצות. odd = אינדקס היוצא דופן. נימוקים: reasons[0] הוא הנכון (המשחק מערבב). */
+  FV.T4 = [
+    { items: [ { t: 'int', v: 2 }, { t: 'imp', n: 6, d: 3 }, { t: 'imp', n: 12, d: 6 }, { t: 'imp', n: 2, d: 6 } ], odd: 3,
+      reasons: ['שלושת האחרים שווים לשני שלמים, ו־[[2/6]] קטן משלם אחד.',
+                '[[2/6]] הוא היחיד שהמכנה שלו הוא 6.',
+                '[[2/6]] הוא היחיד שאי אפשר לצייר.'] },
+    { items: [ { t: 'mixed', w: 1, n: 1, d: 3 }, { t: 'imp', n: 4, d: 3 }, { t: 'imp', n: 8, d: 6 }, { t: 'imp', n: 7, d: 6 } ], odd: 3,
+      reasons: ['שלושת האחרים שווים לשלם ושליש, ו־[[7/6]] הוא שלם ושישית אחת.',
+                '[[7/6]] הוא היחיד שהמונה שלו גדול מ־6.',
+                '[[7/6]] הוא היחיד בלי מספר שלם.'] },
+    { items: [ { t: 'mixed', w: 1, n: 1, d: 6 }, { t: 'imp', n: 7, d: 6 }, { t: 'draw', w: 1, n: 1, d: 6 }, { t: 'imp', n: 4, d: 6 } ], odd: 3,
+      reasons: ['שלושת האחרים שווים לשלם ושישית, ו־[[4/6]] קטן משלם.',
+                '[[4/6]] הוא היחיד שכתוב בצורת שבר.',
+                '[[4/6]] הוא היחיד שהמכנה שלו קטן מ־7.'] },
+  ];
+
+  /* משימה 5 – הזמנות (בשלישים) ומלאי. סכום ההזמנות חייב להיות שווה למלאי. */
+  FV.T5 = {
+    orders: [5, 1, 6, 4, 8, 10],               // [[5/3]] ... [[10/3]] פיצה
+    inventory: { w: 6, t: 16 },                // 6 פיצות שלמות + 16 שלישים = 34 שלישים
+    reasons: ['חילקתי את המונה ב־3: המנה היא מספר הפיצות השלמות, והשארית היא מספר השלישים.',
+              'הוספתי 3 לכל מונה ואז ספרתי.',
+              'ספרתי רק את הפיצות השלמות והתעלמתי מהשלישים.'],
+  };
+
+  /* ---------- טקסט חגיגי ---------- */
+  FV.FINALE = {
+    title: 'יש לנו סוכני שברים מצטיינים!',
+    text: 'הצלחתם להראות ששבר מדומה ומספר מעורב יכולים לייצג בדיוק אותה כמות. בניתם שלמים, השוויתם ייצוגים, הסברתם את החשיבה ופיצחתם את הכספת!',
+  };
+  FV.CERT = {
+    title: 'תעודת סוכן שברים מצטיין',
+    pre: 'מוענקת ל־',
+    post: ' על חשיבה מתמטית, התמדה, שיתוף פעולה ופיצוח מוצלח של כספת השברים.',
+  };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/* DIGITAL – סוכני הכספת: ליבה – עזרי DOM, שמירה, שמע, גרירה, מנחה, רכיבי שבר ורצועה */
+(function () {
+  'use strict';
+  const FV = window.FV;
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+  FV.$ = $; FV.$$ = $$;
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  FV.pick = pick;
+  FV.shuffle = (a) => { const r = a.slice(); for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; } return r; };
+  FV.esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  /* ---------- שמירה מקומית (בדפדפן בלבד) ---------- */
+  const defaults = () => ({
+    v: 1, mode: 'solo', names: [], done: 0, started: false,
+    settings: { music: true, sfx: true, reduce: false, skipIntro: false, timer: false, demo: false, solutions: false },
+  });
+  function load() {
+    try {
+      const raw = localStorage.getItem(FV.STORAGE_KEY);
+      if (raw) { const s = JSON.parse(raw); const d = defaults(); return Object.assign(d, s, { settings: Object.assign(d.settings, s.settings || {}) }); }
+    } catch (e) { /* אחסון חסום – ממשיכים בלי שמירה */ }
+    return defaults();
+  }
+  FV.state = load();
+  FV.save = () => { try { localStorage.setItem(FV.STORAGE_KEY, JSON.stringify(FV.state)); } catch (e) { /* ignore */ } };
+  FV.resetGame = () => { const s = FV.state.settings; FV.state = defaults(); FV.state.settings = s; FV.save(); };
+  FV.reduced = () => FV.state.settings.reduce || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  FV.wait = (ms) => new Promise((r) => setTimeout(r, FV.reduced() ? Math.min(ms, 200) : ms));
+
+  /* ---------- שברים ---------- */
+  FV.frac = (n, d, cls) => `<span class="frac ${cls || ''}" dir="ltr"><span class="n">${n}</span><span class="d">${d}</span></span>`;
+  FV.mixed = (w, n, d) => (n === 0 ? `<span class="mixed" dir="ltr">${w}</span>` :
+    (w === 0 ? FV.frac(n, d) : `<span class="mixed" dir="ltr">${w}${FV.frac(n, d)}</span>`));
+  // [[5/3]] שבר, [[1 2/3]] מספר מעורב – מוחלף לתצוגה אנכית
+  const EQTOK = '(?:\\[\\[[^\\]]+\\]\\]|\\d+)';
+  const EQRE = new RegExp('(' + EQTOK + '(?: = ' + EQTOK + ')+)', 'g');
+  // שרשרת שוויון (למשל [[5/3]] = [[1 2/3]]) נעטפת כיחידה אחת משמאל לימין
+  FV.rich = (str) => FV.esc(str).split(/(\{\{.+?\}\})/).map((p, i) => (i % 2 ? p : p.replace(EQRE, '{{$1}}'))).join('').replace(/\[\[(?:(\d+) )?(\d+)\/(\d+)\]\]/g, (m, w, n, d) => {
+    return w ? `<bdi dir="ltr">${FV.mixed(+w, +n, +d)}</bdi>` : `<bdi dir="ltr">${FV.frac(n, d)}</bdi>`;
+  }).replace(/\{\{(.+?)\}\}/g, (m, x) => `<bdi dir="ltr" class="eq sm">${x}</bdi>`); // {{2 × 6 + 2 = 14}} – ביטוי חשבוני משמאל לימין
+  // טקסט קריא לקוראי מסך
+  FV.say = (w, n, d) => (w ? (n ? FV.words.mixedName(w, n, d) : String(w)) : FV.words.fractionName(n, d));
+  FV.numInput = (id, label, extra) => `<input class="num" id="${id}" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" aria-label="${label}" ${extra || ''}>`;
+
+  /* רצועה: d תאים, count צבועים (לפי סדר), נתמך מצב "שלם" */
+  FV.stripHTML = (d, on, opts) => {
+    opts = opts || {};
+    let cells = '';
+    for (let i = 0; i < d; i++) {
+      const isOn = i < on;
+      cells += opts.buttons
+        ? `<button type="button" class="cell${isOn ? ' on' : ''}" data-i="${i}" aria-pressed="${isOn}" aria-label="חלק ${i + 1} מתוך ${d} ברצועה ${opts.idx + 1}: ${isOn ? 'צבוע' : 'לא צבוע'}"></button>`
+        : `<span class="cell${isOn ? ' on' : ''}"></span>`;
+    }
+    const whole = opts.whole;
+    return `<div class="stripwrap${whole ? ' whole' : ''}" role="img" aria-label="${opts.label || ('רצועה מחולקת ל־' + d + ' חלקים שווים, ' + on + ' צבועים')}">
+      <div class="arc"></div><div class="wbadge">${FV.frac(d, d)}<span>=</span>1</div>
+      <div class="strip" ${opts.zone ? '' : ''}>${cells}</div></div>`;
+  };
+  /* ספירת כמות כוללת של q חלקים בגודל 1/d על פני s רצועות */
+  FV.stripsFor = (d, q, s, opts) => {
+    opts = opts || {}; let h = ''; const mark = opts.mark !== false;
+    for (let i = 0; i < s; i++) {
+      const on = Math.max(0, Math.min(d, q - i * d));
+      h += FV.stripHTML(d, on, { whole: mark && opts.group && on === d, buttons: opts.buttons, idx: i, label: opts.label ? opts.label + ' – רצועה ' + (i + 1) : undefined });
+    }
+    return `<div class="strips">${h}</div>`;
+  };
+
+  /* ---------- מודאל אישור ---------- */
+  FV.confirm = (title, msg, yes, no) => new Promise((res) => {
+    const m = $('#modal'); const prev = document.activeElement;
+    m.innerHTML = `<div class="box" role="alertdialog" aria-modal="true" aria-labelledby="mt"><h3 id="mt"></h3><p></p><div class="row"><button class="btn gold" id="my"></button><button class="btn ghost" id="mn"></button></div></div>`;
+    $('h3', m).textContent = title; $('p', m).textContent = msg; $('#my', m).textContent = yes || 'כן'; $('#mn', m).textContent = no || 'ביטול';
+    m.classList.add('on'); $('#mn', m).focus();
+    const done = (v) => { m.classList.remove('on'); m.innerHTML = ''; if (prev && prev.focus) prev.focus(); res(v); };
+    $('#my', m).onclick = () => done(true); $('#mn', m).onclick = () => done(false);
+    m.onkeydown = (e) => { if (e.key === 'Escape') done(false); };
+  });
+  FV.toast = (t) => { const e = document.createElement('div'); e.className = 'toast'; e.textContent = t; document.body.appendChild(e); setTimeout(() => e.remove(), 2200); };
+
+  /* ---------- שמע מסונתז (WebAudio, ללא קבצים) ---------- */
+  const A = (FV.audio = { ctx: null, master: null, loopTimer: null, step: 0 });
+  A.init = () => {
+    if (A.ctx) { if (A.ctx.state === 'suspended') A.ctx.resume(); return; }
+    try {
+      const C = window.AudioContext || window.webkitAudioContext; if (!C) return;
+      A.ctx = new C(); A.master = A.ctx.createGain(); A.master.gain.value = 0.55; A.master.connect(A.ctx.destination);
+    } catch (e) { A.ctx = null; }
+  };
+  A.tone = (f, dur, type, vol, at) => {
+    if (!A.ctx) return;
+    const t = A.ctx.currentTime + (at || 0); const o = A.ctx.createOscillator(); const g = A.ctx.createGain();
+    o.type = type || 'sine'; o.frequency.value = f;
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol || 0.2, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(A.master); o.start(t); o.stop(t + dur + 0.05);
+  };
+  const N = { C4: 261.6, D4: 293.7, E4: 329.6, F4: 349.2, G4: 392, A4: 440, B4: 493.9, C5: 523.3, D5: 587.3, E5: 659.3, G5: 784, A5: 880, C6: 1046.5 };
+  const sfx = (fn) => (...a) => { if (FV.state.settings.sfx) { A.init(); fn(...a); } };
+  A.fanfare = sfx(() => { [N.C4, N.E4, N.G4, N.C5, N.G4, N.C5, N.E5, N.G5].forEach((f, i) => A.tone(f, 0.35, 'triangle', 0.16, i * 0.14)); A.tone(N.C5, 1.1, 'sawtooth', 0.06, 1.1); A.tone(N.G5, 1.1, 'triangle', 0.1, 1.1); });
+  A.tick = sfx(() => A.tone(N.A4, 0.18, 'square', 0.07));
+  A.click = sfx(() => A.tone(N.E5, 0.07, 'triangle', 0.08));
+  A.drop = sfx(() => { A.tone(N.G4, 0.12, 'triangle', 0.12); A.tone(N.C5, 0.14, 'triangle', 0.1, 0.07); });
+  A.tension = sfx(() => { for (let i = 0; i < 5; i++) A.tone(110 + i * 14, 0.28, 'sine', 0.2, i * 0.26); A.tone(N.A4, 0.2, 'triangle', 0.06, 1.1); });
+  A.lock = sfx(() => { A.tone(150, 0.12, 'square', 0.12); A.tone(300, 0.1, 'square', 0.08, 0.1); });
+  A.success = sfx(() => { [N.E5, N.G5, N.C6].forEach((f, i) => A.tone(f, 0.45, 'triangle', 0.16, i * 0.11)); A.tone(N.C5, 0.8, 'sine', 0.1, 0.3); });
+  A.wrong = sfx(() => { A.tone(N.A4, 0.22, 'sine', 0.12); A.tone(N.F4, 0.34, 'sine', 0.12, 0.2); });
+  A.digit = sfx(() => [N.G5, N.C6, N.G5, N.C6].forEach((f, i) => A.tone(f, 0.12, 'triangle', 0.12, i * 0.09)));
+  A.victory = sfx(() => {
+    const m = [N.C5, N.E5, N.G5, N.C6, N.G5, N.C6, N.E5 * 2];
+    m.forEach((f, i) => { A.tone(f, 0.4, 'triangle', 0.18, i * 0.16); A.tone(f / 2, 0.4, 'sawtooth', 0.04, i * 0.16); });
+    [N.C5, N.E5, N.G5, N.C6].forEach((f) => A.tone(f, 1.8, 'triangle', 0.1, 1.2));
+  });
+  // מוזיקת רקע עדינה בלולאה
+  const LOOP = [N.C4, N.E4, N.G4, N.E4, N.A4 / 2 * 1, N.C4 * 1, N.F4, N.A4, N.G4, N.E4, N.D4, N.G4 / 2 * 1];
+  A.musicOn = () => {
+    A.stopMusic(); if (!FV.state.settings.music) return; A.init(); if (!A.ctx) return;
+    A.loopTimer = setInterval(() => {
+      if (!FV.state.settings.music || document.hidden) return;
+      const f = LOOP[A.step++ % LOOP.length]; A.tone(f, 0.55, 'triangle', 0.035); if (A.step % 4 === 1) A.tone(f / 2, 1.2, 'sine', 0.04);
+    }, 520);
+  };
+  A.stopMusic = () => { if (A.loopTimer) clearInterval(A.loopTimer); A.loopTimer = null; };
+  A.say = (text) => { // קריינות אופציונלית – רק אם הדפדפן מספק קול בעברית
+    try {
+      if (!FV.state.settings.narrate || !('speechSynthesis' in window)) return;
+      speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/<[^>]+>/g, '')); u.lang = 'he-IL'; u.rate = 0.95; speechSynthesis.speak(u);
+    } catch (e) { /* ignore */ }
+  };
+
+  /* ---------- גרירה + חלופת מקלדת/הקשה (בחירה ואז יעד) ---------- */
+  const D = (FV.drag = { sel: null });
+  D.clear = () => { if (D.sel && D.sel.el) D.sel.el.classList.remove('sel'); D.sel = null; };
+  D.attach = (piece, payload) => {
+    let sx = null, sy = 0, ghost = null, moved = false, pid = null;
+    const get = () => (typeof payload === 'function' ? payload() : payload);
+    piece.addEventListener('pointerdown', (e) => {
+      if (e.button > 0) return; sx = e.clientX; sy = e.clientY; moved = false; pid = e.pointerId; try { piece.setPointerCapture(pid); } catch (er) { /* ignore */ }
+    });
+    piece.addEventListener('pointermove', (e) => {
+      if (sx === null || e.pointerId !== pid) return;
+      if (!moved && Math.hypot(e.clientX - sx, e.clientY - sy) > 8) {
+        moved = true; try { piece.setPointerCapture(pid); } catch (er) { /* ignore */ }
+        ghost = piece.cloneNode(true); ghost.classList.add('dragghost'); ghost.removeAttribute('id'); document.body.appendChild(ghost); piece.classList.add('dragging');
+      }
+      if (moved) {
+        ghost.style.left = e.clientX + 'px'; ghost.style.top = e.clientY + 'px';
+        $$('.zone.hover').forEach((z) => z.classList.remove('hover'));
+        const z = D.zoneAt(e.clientX, e.clientY); if (z) z.classList.add('hover');
+      }
+    });
+    const end = (e) => {
+      if (sx === null || e.pointerId !== pid) return;
+      if (moved) {
+        const z = D.zoneAt(e.clientX, e.clientY); if (ghost) ghost.remove();
+        $$('.zone.hover').forEach((q) => q.classList.remove('hover')); piece.classList.remove('dragging');
+        piece._skip = true; setTimeout(() => { piece._skip = false; }, 60);
+        D.clear(); if (z && z._drop) z._drop(get());
+      }
+      sx = null; pid = null; ghost = null;
+    };
+    piece.addEventListener('pointerup', end);
+    piece.addEventListener('pointercancel', (e) => { if (ghost) ghost.remove(); piece.classList.remove('dragging'); sx = null; });
+    piece.addEventListener('click', () => {
+      if (piece._skip) return; A.click();
+      if (D.sel && D.sel.el === piece) { D.clear(); return; }
+      D.clear(); piece.classList.add('sel'); D.sel = { el: piece, payload: get() };
+      FV.announce('נבחר. עכשיו בחרו את המקום להנחה.');
+    });
+  };
+  D.zoneAt = (x, y) => { const els = document.elementsFromPoint(x, y); for (const e of els) { const z = e.closest && e.closest('.zone'); if (z && z._drop) return z; } return null; };
+  D.zone = (el, onDrop, label) => {
+    el.classList.add('zone'); el.tabIndex = 0; el.setAttribute('role', 'button'); if (label) el.setAttribute('aria-label', label);
+    el._drop = onDrop;
+    const act = () => { if (D.sel) { const p = D.sel.payload; D.clear(); onDrop(p); } else FV.announce('קודם בחרו כרטיס או חלק להנחה.'); };
+    el.addEventListener('click', (e) => { if (e.target.closest('.piece,.card,.pz')) return; act(); });
+    el.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target === el) { e.preventDefault(); act(); } });
+  };
+  FV.announce = (t) => { const a = $('#live'); if (a) { a.textContent = ''; setTimeout(() => { a.textContent = t; }, 30); } };
+
+  /* ---------- מנחה ---------- */
+  FV.hostSVG = () => `<svg class="host" viewBox="0 0 200 250" role="img" aria-label="נוגה, המנחה הווירטואלית">
+    <defs><linearGradient id="hg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe27a"/><stop offset="1" stop-color="#f0a912"/></linearGradient>
+    <linearGradient id="hg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a3df0"/><stop offset="1" stop-color="#3a1b9c"/></linearGradient></defs>
+    <line x1="100" y1="18" x2="100" y2="42" stroke="#9fb2ff" stroke-width="5"/><circle cx="100" cy="14" r="10" fill="#1fe0cf"/>
+    <rect x="32" y="42" width="136" height="102" rx="44" fill="url(#hg1)" stroke="#fff" stroke-width="5"/>
+    <rect x="48" y="66" width="104" height="42" rx="21" fill="#10196a" stroke="#1fe0cf" stroke-width="4"/>
+    <circle cx="78" cy="87" r="10" fill="#fff"/><circle cx="122" cy="87" r="10" fill="#fff"/><circle cx="80" cy="88" r="5" fill="#10196a"/><circle cx="124" cy="88" r="5" fill="#10196a"/>
+    <ellipse class="mouth" cx="100" cy="124" rx="16" ry="6" fill="#7a2b00"/>
+    <rect x="62" y="146" width="76" height="14" rx="6" fill="#1fe0cf"/>
+    <path d="M40 160 h120 l12 80 h-144z" fill="url(#hg2)" stroke="#fff" stroke-width="4"/>
+    <path d="M100 160 l-18 14 l18 14 l18 -14z" fill="#ffcf3f" stroke="#fff" stroke-width="3"/>
+    <text x="100" y="226" text-anchor="middle" font-size="22" font-weight="900" fill="#ffcf3f" font-family="sans-serif">DIGITAL</text>
+    <circle cx="26" cy="100" r="14" fill="#1fe0cf" stroke="#fff" stroke-width="3"/><circle cx="174" cy="100" r="14" fill="#1fe0cf" stroke="#fff" stroke-width="3"/></svg>`;
+  FV.hostSay = (html, raw) => {
+    const b = $('#bubble'); if (!b) return; b.innerHTML = raw ? html : FV.rich(html);
+    const h = $('.host'); if (h) { h.classList.remove('talk'); void h.getBoundingClientRect(); h.classList.add('talk'); }
+    A.say(b.textContent);
+  };
+
+  /* ---------- אפקטים ---------- */
+  FV.confetti = (n) => {
+    if (FV.reduced()) return; const c = document.createElement('div'); c.className = 'confetti'; const cols = ['#ffcf3f', '#1fe0cf', '#3ddc84', '#8a4cf0', '#fff'];
+    for (let i = 0; i < (n || 46); i++) { const e = document.createElement('i'); e.style.left = Math.random() * 100 + '%'; e.style.background = cols[i % cols.length]; e.style.animationDelay = Math.random() * 1.2 + 's'; e.style.transform = `rotate(${Math.random() * 360}deg)`; c.appendChild(e); }
+    document.body.appendChild(c); setTimeout(() => c.remove(), 5200);
+  };
+
+  /* ---------- מסכים ופרמטרים גלובליים ---------- */
+  FV.show = (id) => {
+    $$('.screen').forEach((s) => s.classList.toggle('on', s.id === 's-' + id));
+    document.body.dataset.screen = id; FV.screen = id; D.clear();
+    $('#bar').hidden = ['splash', 'intro'].includes(id);
+    window.scrollTo(0, 0);
+  };
+  FV.applySettings = () => {
+    const s = FV.state.settings; document.body.classList.toggle('reduce', !!s.reduce); document.body.classList.toggle('demo', !!s.demo);
+    const mb = $('#btnMusic'); if (mb) mb.setAttribute('aria-pressed', String(!!s.music));
+    const sb = $('#btnSfx'); if (sb) sb.setAttribute('aria-pressed', String(!!s.sfx));
+    FV.save();
+  };
+  FV.updateDigits = () => {
+    $$('#bar .dslot').forEach((d, i) => {
+      const got = i < FV.state.done; d.classList.toggle('got', got); d.textContent = got ? FV.DIGITS[i] : '?';
+      d.setAttribute('aria-label', got ? `ספרה ${i + 1}: ${FV.DIGITS[i]}` : `ספרה ${i + 1}: עדיין לא נחשפה`);
+    });
+  };
+  FV.fillSig = () => { $$('[data-sig]').forEach((e) => { e.textContent = FV.SIGNATURE; }); $$('[data-brand]').forEach((e) => { e.textContent = FV.BRAND; }); };
+  FV.fullscreen = () => {
+    try { if (!document.fullscreenElement) (document.documentElement.requestFullscreen || (() => FV.toast('מסך מלא אינו נתמך בדפדפן זה')))(); else document.exitFullscreen(); } catch (e) { FV.toast('מסך מלא אינו זמין'); }
+  };
+  FV.playerLabel = () => (FV.state.names.length ? FV.state.names.join(' ו') : '');
+})();
+
+/* DIGITAL – סוכני הכספת: חמש המשימות.
+   כל משימה היא מערך של "שלבים": { instr, render(stage), check() -> {ok, say, explain, hint}, hints[] } */
+(function () {
+  'use strict';
+  const FV = window.FV; const { $, $$, frac, mixed, rich, esc } = FV; const D = FV.drag; const W = FV.words;
+  const num = (id) => { const v = parseInt(($('#' + id) || {}).value, 10); return Number.isNaN(v) ? NaN : v; };
+  const mark = (id, st) => { const e = $('#' + id); if (e) { e.classList.remove('ok', 'bad'); if (st) e.classList.add(st); } };
+  const unitMany = (d) => (d === 3 ? 'שלישים' : 'שישיות');
+  const fracIn = (n, d) => `<span class="frac"><span class="n">${n}</span><span class="d">${d}</span></span>`;
+  const wrongSay = () => FV.pick(FV.HOST.wrong);
+
+  /* ====================== משימה 1 – מעבדת השלישים ====================== */
+  function task1() {
+    const S = { counts: [0, 0], pool: 5 };
+    const strips = () => [0, 1].map((i) => {
+      const full = S.counts[i] === 3; let cells = '';
+      for (let k = 0; k < 3; k++) {
+        cells += k < S.counts[i]
+          ? `<button type="button" class="cell on placed" data-ret="${i}" aria-label="חלק שליש ברצועה ${i + 1}. הקישו להחזרה למגש"></button>`
+          : '<span class="cell"></span>';
+      }
+      return `<div class="stripwrap${full ? ' whole' : ''}" data-strip="${i}"><div class="arc"></div><div class="wbadge">${frac(3, 3)}<span>=</span>1</div>
+        <div class="strip">${cells}</div><div class="legend">רצועה ${i + 1}: ${S.counts[i]} מתוך 3</div></div>`;
+    }).join('');
+    const build = {
+      instr: 'גררו חמישה שלישים אל הרצועות ובנו מהם שלם וכמות נוספת.',
+      hints: FV.TASKS[0].hints,
+      render(stage) {
+        const draw = () => {
+          let pcs = ''; for (let i = 0; i < S.pool; i++) pcs += `<button type="button" class="piece" aria-label="חלק בגודל שליש">${frac(1, 3)}</button>`;
+          stage.innerHTML = `<div class="legend">מגש החלקים – נשארו ${S.pool} מתוך 5</div>
+            <div class="tray" id="tray" aria-label="מגש חלקים">${pcs || '<span class="legend">כל החלקים הונחו</span>'}</div>
+            <div class="strips" id="strs">${strips()}</div>`;
+          $$('.piece', stage).forEach((p) => D.attach(p, { t: 'third' }));
+          $$('[data-strip]', stage).forEach((z) => {
+            const i = +z.dataset.strip;
+            D.zone(z, () => place(i), `רצועה ${i + 1}, הניחו כאן חלק שליש`);
+          });
+          const tray = $('#tray', stage); D.zone(tray, () => FV.announce('החלקים כבר במגש. גררו אותם לרצועות.'), 'מגש החלקים');
+          $$('[data-ret]', stage).forEach((b) => b.addEventListener('click', (e) => { e.stopPropagation(); S.counts[+b.dataset.ret]--; S.pool++; FV.audio.click(); draw(); }));
+        };
+        const place = (i) => {
+          if (S.pool <= 0) return; if (S.counts[i] >= 3) { FV.announce('הרצועה מלאה'); return; }
+          S.counts[i]++; S.pool--; FV.audio.drop(); draw();
+          if (S.counts[i] === 3) { FV.audio.success(); FV.announce('שלושה שלישים יוצרים שלם אחד'); }
+        };
+        draw();
+      },
+      check() {
+        if (S.pool > 0) return { ok: false, say: 'עוד לא הנחתם את כל חמשת החלקים.', hint: 'גררו את כל החלקים מהמגש אל הרצועות.' };
+        const ok = (S.counts[0] === 3 && S.counts[1] === 2) || (S.counts[0] === 2 && S.counts[1] === 3);
+        return ok ? { ok: true, say: 'שלושה שלישים יוצרים שלם אחד, ונשארים שני שלישים.', explain: 'שלושה שלישים יוצרים שלם אחד: [[3/3]] = 1. ונשארים שני שלישים.' }
+          : { ok: false, say: 'מלאו קודם רצועה אחת לגמרי.', hint: 'שלושה שלישים ממלאים רצועה אחת.' };
+      },
+    };
+    const fill = {
+      instr: 'השלימו: איזה מספר מעורב שווה לחמישה שלישים?',
+      hints: ['כמה רצועות מלאות יש? וכמה שלישים נשארו ברצועה האחרונה?', 'לכמה חלקים שווים חולק כל שלם?'],
+      render(stage) {
+        stage.innerHTML = `<div class="strips">${strips()}</div>
+          <p class="center"><span class="eq">${frac(5, 3)}<span class="op">=</span>${FV.numInput('t1w', 'מספר השלמים')}${fracIn(FV.numInput('t1n', 'מונה'), FV.numInput('t1d', 'מכנה'))}</span></p>`;
+        setTimeout(() => { const e = $('#t1w'); if (e) e.focus(); }, 50);
+      },
+      check() {
+        const w = num('t1w'), n = num('t1n'), d = num('t1d'); mark('t1w'); mark('t1n'); mark('t1d');
+        if (w === 1 && n === 2 && d === 3) { ['t1w', 't1n', 't1d'].forEach((i) => mark(i, 'ok')); return { ok: true, say: FV.pick(FV.HOST.right), explain: '[[5/3]] = [[1 2/3]]. שלם אחד ועוד שני שלישים.' }; }
+        if (d !== 3) { mark('t1d', 'bad'); return { ok: false, say: wrongSay(), hint: 'לכמה חלקים שווים חולק כל שלם? הביטו בתאים של כל רצועה.' }; }
+        if (w !== 1) { mark('t1w', 'bad'); return { ok: false, say: wrongSay(), hint: 'כמה רצועות מלאות (שלמים) יש בציור?' }; }
+        mark('t1n', 'bad'); return { ok: false, say: wrongSay(), hint: 'כמה שלישים צבועים ברצועה שאינה מלאה?' };
+      },
+    };
+    return [build, fill];
+  }
+
+  /* ====================== משימה 2 – מכונת ההמרות ====================== */
+  function task2() {
+    return FV.T2.map((e, idx) => {
+      const d = e.d; const target = e.kind === 'mixed' ? e.w * d + e.n : e.N;
+      const S = { counts: [0, 0, 0], grouped: false, open: false };
+      const setTarget = () => { let q = target; S.counts = [0, 1, 2].map(() => { const c = Math.min(d, q); q -= c; return c; }); };
+      return {
+        instr: 'השלימו את השוויון. אפשר לפתוח המחשה ולצבוע חלקים.',
+        hints: [
+          `כמה ${unitMany(d)} יש בשלם אחד? זה המכנה.`,
+          { text: 'פתחו את ההמחשה, צבעו את הכמות ולחצו "קבצו לשלמים".', run: () => { S.open = true; S.counts = [0, 0, 0]; S.grouped = false; S._draw && S._draw(); } },
+          { text: 'בנו קודם את השלמים ורק אחר כך בדקו מה נשאר. הפעלתי לכם את ההמחשה.', run: () => { S.open = true; setTarget(); S.grouped = true; S._draw && S._draw(); } },
+        ],
+        render(stage) {
+          const left = e.kind === 'mixed' ? (e.n === 0 ? `<span class="mixed">${e.w}</span>` : mixed(e.w, e.n, d)) : frac(e.N, d);
+          const right = e.kind === 'mixed'
+            ? fracIn(FV.numInput('t2a', 'מונה'), d)
+            : `${FV.numInput('t2w', 'מספר השלמים')}${fracIn(FV.numInput('t2a', 'מונה'), d)}`;
+          stage.innerHTML = `<p class="center"><span class="eq">${left}<span class="op">=</span>${right}</span></p>
+            <p class="center"><button type="button" class="btn ghost" id="vz" aria-expanded="false">🔍 פתחו המחשה</button></p><div id="vzp"></div>`;
+          const draw = () => {
+            $('#vz').setAttribute('aria-expanded', String(S.open)); $('#vz').textContent = S.open ? '🔍 סגרו המחשה' : '🔍 פתחו המחשה';
+            const p = $('#vzp'); if (!S.open) { p.innerHTML = ''; return; }
+            const total = S.counts.reduce((a, b) => a + b, 0); const full = S.counts.filter((c) => c === d).length; const rest = total - full * d;
+            let strips = '';
+            S.counts.forEach((c, i) => { strips += FV.stripHTML(d, c, { buttons: true, idx: i, whole: S.grouped && c === d }); });
+            p.innerHTML = `<div class="strips" id="vzs">${strips}</div>
+              <p class="center legend">צבעו חלקים בלחיצה על התאים. כל חלק הוא ${frac(1, d)} מהשלם. צבעתם: ${total} חלקים.</p>
+              <p class="center"><button type="button" class="btn ghost" id="grp">🧩 קבצו לשלמים</button> <button type="button" class="btn ghost" id="clr">🧹 נקו</button></p>
+              <p class="center legend" id="sumln">${S.grouped ? `יש כאן ${full} שלמים${rest ? ' ועוד ' + W.partName(rest, d) : ''}.` : ''}</p>`;
+            $$('#vzs .cell').forEach((b, k) => b.addEventListener('click', () => {
+              const si = Math.floor(k / d), ci = k % d; S.counts[si] = ci < S.counts[si] ? ci : ci + 1; S.grouped = false; FV.audio.click(); draw();
+            }));
+            $('#grp').onclick = () => { S.grouped = true; FV.audio.drop(); draw(); };
+            $('#clr').onclick = () => { S.counts = [0, 0, 0]; S.grouped = false; draw(); };
+          };
+          S._draw = draw; $('#vz').onclick = () => { S.open = !S.open; draw(); };
+          setTimeout(() => { const f = $(e.kind === 'imp' ? '#t2w' : '#t2a'); if (f) f.focus(); }, 50);
+        },
+        check() {
+          const a = num('t2a'); const w = num('t2w'); mark('t2a'); mark('t2w');
+          const showTarget = () => { S.open = true; setTarget(); S.grouped = true; S._draw && S._draw(); };
+          if (e.kind === 'mixed') {
+            if (a === e.ans) {
+              mark('t2a', 'ok'); showTarget();
+              const lhs = e.n === 0 ? String(e.w) : `[[${e.w} ${e.n}/${d}]]`;
+              return { ok: true, say: FV.pick(FV.HOST.right),
+                explain: `מספר השלמים × המכנה${e.n ? ' + המונה' : ''}: {{${e.w} × ${d}${e.n ? ' + ' + e.n : ''} = ${e.ans}}}. לכן ${lhs} = [[${e.ans}/${d}]].`,
+              };
+            }
+            mark('t2a', 'bad');
+            return { ok: false, say: wrongSay(), hint: `כמה ${unitMany(d)} יש בשלם אחד? כמה שלמים יש כאן? בנו קודם את השלמים ואז הוסיפו את מה שנשאר.` };
+          }
+          if (w === e.aw && a === e.an) { mark('t2w', 'ok'); mark('t2a', 'ok'); showTarget();
+            return { ok: true, say: FV.pick(FV.HOST.right), explain: `מקבצים שלמים: {{${e.aw} × ${d} = ${e.aw * d}}}, ונשאר {{${e.N} − ${e.aw * d} = ${e.an}}}. לכן [[${e.N}/${d}]] = [[${e.aw} ${e.an}/${d}]].` }; }
+          mark('t2w', w === e.aw ? 'ok' : 'bad'); mark('t2a', a === e.an ? 'ok' : 'bad');
+          return { ok: false, say: wrongSay(), hint: `כמה פעמים נכנסים ${d} ${unitMany(d)} ב־${e.N} ${unitMany(d)}? כמה נשאר?` };
+        },
+      };
+    });
+  }
+
+  /* ====================== משימה 3 – חדר ההתאמות ====================== */
+  function task3() {
+    const rows = FV.T3.map((r, i) => ({ r, i, total: r.w * r.d + r.n, name: W.mixedName(r.w, r.n, r.d), numHTML: r.numCard.w ? mixed(r.numCard.w, r.numCard.n, r.numCard.d) : frac(r.numCard.n, r.numCard.d) }));
+    const order = FV.shuffle(rows.map((x) => x.i));
+    const order2 = FV.shuffle(rows.map((x) => x.i));
+    const S = { slots: rows.map(() => ({ num: null, name: null, lock: false })), msgs: {} };
+    return [{
+      instr: 'התאימו לכל רצועה את המספר ואת שם המספר. גררו כרטיסים, או בחרו כרטיס ואז את המקום שלו.',
+      hints: FV.TASKS[2].hints,
+      render(stage) {
+        const draw = () => {
+          const used = (kind, id) => S.slots.some((s) => s[kind] === id);
+          const card = (kind, id) => kind === 'num'
+            ? `<button type="button" class="card num" data-k="num" data-id="${id}" aria-label="מספר: ${esc(FV.say(rows[id].r.numCard.w, rows[id].r.numCard.n, rows[id].r.numCard.d))}">${rows[id].numHTML}</button>`
+            : `<button type="button" class="card name" data-k="name" data-id="${id}">${esc(rows[id].name)}</button>`;
+          const poolN = order.filter((id) => !used('num', id)).map((id) => card('num', id)).join('');
+          const poolM = order2.filter((id) => !used('name', id)).map((id) => card('name', id)).join('');
+          let rh = '';
+          rows.forEach((row) => {
+            const s = S.slots[row.i]; const total = row.total; const st = s.lock ? ' ok' : (S.msgs[row.i] ? ' bad' : '');
+            rh += `<div class="row3${st}" data-row="${row.i}">
+              <div class="strips" role="img" aria-label="ציור: ${esc(W.mixedName(row.r.w, row.r.n, row.r.d))}">${FV.stripsFor(row.r.d, total, Math.ceil(total / row.r.d), { mark: false }).replace('class="strips"', 'class="strips" style="--sw:96px"')}</div>
+              <div class="slot${s.num !== null ? ' full' : ''}" data-slot="num" data-row="${row.i}">${s.num !== null ? card('num', s.num) : '<span class="legend">מספר</span>'}</div>
+              <div class="slot${s.name !== null ? ' full' : ''}" data-slot="name" data-row="${row.i}">${s.name !== null ? card('name', s.name) : '<span class="legend">שם המספר</span>'}</div>
+              ${s.lock ? '<div class="legend"><span class="mark">✓ התאמה נכונה</span></div>' : ''}
+              ${S.msgs[row.i] ? `<div class="ask"><span class="mark">!</span> ${esc(S.msgs[row.i])}</div>` : ''}</div>`;
+          });
+          stage.innerHTML = `<div class="legend">כרטיסי מספרים</div><div class="tray" id="pn">${poolN || '<span class="legend">כל המספרים הונחו</span>'}</div>
+            <div class="legend">כרטיסי שמות</div><div class="tray" id="pm">${poolM || '<span class="legend">כל השמות הונחו</span>'}</div><div class="rows3">${rh}</div>`;
+          $$('.card', stage).forEach((c) => { if (!c.closest('.row3.ok')) D.attach(c, { k: c.dataset.k, id: +c.dataset.id }); else c.disabled = true; });
+          $$('.slot', stage).forEach((z) => {
+            const ri = +z.dataset.row; if (S.slots[ri].lock) return;
+            D.zone(z, (p) => put(ri, z.dataset.slot, p), `${z.dataset.slot === 'num' ? 'מקום למספר' : 'מקום לשם המספר'} ברצועה ${ri + 1}`);
+          });
+          ['pn', 'pm'].forEach((pid) => D.zone($('#' + pid, stage), (p) => back(p), 'החזרה למאגר הכרטיסים'));
+        };
+        const back = (p) => { S.slots.forEach((s) => { if (!s.lock && s[p.k] === p.id) s[p.k] = null; }); draw(); };
+        const put = (ri, kind, p) => {
+          if (p.k !== kind) { FV.announce(kind === 'num' ? 'כאן מניחים כרטיס מספר' : 'כאן מניחים כרטיס שם'); return; }
+          S.slots.forEach((s) => { if (!s.lock && s[kind] === p.id) s[kind] = null; });
+          S.slots[ri][kind] = p.id; S.msgs[ri] = null; FV.audio.drop(); draw();
+        };
+        S._draw = draw; draw();
+      },
+      check() {
+        let allOk = true; let empty = false;
+        rows.forEach((row) => {
+          const s = S.slots[row.i]; if (s.lock) return;
+          if (s.num === null || s.name === null) { empty = true; allOk = false; return; }
+          const nOk = s.num === row.i, mOk = s.name === row.i;
+          if (nOk && mOk) { s.lock = true; S.msgs[row.i] = null; return; }
+          allOk = false;
+          S.msgs[row.i] = !nOk ? row.r.askNum : row.r.askName;
+          if (!nOk) s.num = null; if (!mOk) s.name = null;
+        });
+        S._draw();
+        if (allOk) return { ok: true, say: FV.pick(FV.HOST.right), explain: 'כל ההתאמות נכונות! למשל: [[8/3]] = [[2 2/3]] – שתי רצועות שלמות ועוד שני שלישים.' };
+        if (empty) return { ok: false, say: 'עוד לא מילאתם את כל המקומות.', hint: 'התאימו לכל רצועה גם מספר וגם שם. ההתאמות הנכונות נשארות במקומן.' };
+        return { ok: false, say: wrongSay(), hint: 'קראו את השאלה המנחה שמופיעה ליד כל התאמה שאינה נכונה, והניחו שוב את הכרטיסים.' };
+      },
+    }];
+  }
+
+  /* ====================== משימה 4 – בלשי הייצוגים ====================== */
+  function repHTML(it) {
+    if (it.t === 'int') return `${it.v}`;
+    if (it.t === 'imp') return frac(it.n, it.d);
+    if (it.t === 'mixed') return mixed(it.w, it.n, it.d);
+    return `<span class="strips miniwrap" style="--sw:70px;gap:4px" role="img">${FV.stripHTML(it.d, it.d, { whole: false })}${FV.stripHTML(it.d, it.n, {})}</span>`;
+  }
+  const repSay = (it) => (it.t === 'int' ? String(it.v) : it.t === 'imp' ? W.fractionName(it.n, it.d) : it.t === 'mixed' ? W.mixedName(it.w, it.n, it.d) : `ציור: ${W.mixedName(it.w, it.n, it.d)}`);
+  const repVal = (it) => (it.t === 'int' ? { n: it.v, d: 1 } : it.t === 'imp' ? { n: it.n, d: it.d } : { n: it.w * it.d + it.n, d: it.d });
+  FV.repVal = repVal;
+  function task4() {
+    return FV.T4.map((g, gi) => {
+      const S = { sel: null, reason: null };
+      const idxs = FV.shuffle([0, 1, 2, 3]);
+      const rIdx = FV.shuffle([0, 1, 2]);
+      const label = ['א', 'ב', 'ג'][gi];
+      return {
+        instr: `קבוצה ${label}׳: בחרו את הייצוג היוצא דופן ואז בחרו נימוק.`,
+        hints: FV.TASKS[3].hints,
+        render(stage) {
+          const draw = () => {
+            stage.innerHTML = `<div class="reps" role="group" aria-label="ארבעה ייצוגים">${idxs.map((i) => `<button type="button" class="rep" data-i="${i}" aria-pressed="${S.sel === i}" aria-label="${esc(repSay(g.items[i]))}${S.sel === i ? ' – נבחר' : ''}">${S.sel === i ? '<span class="tick">✓ נבחר</span>' : ''}${repHTML(g.items[i])}</button>`).join('')}</div>
+              <h3>למה זה היוצא דופן?</h3><div class="reasons" role="group" aria-label="נימוקים">${rIdx.map((i) => `<button type="button" class="reason" data-r="${i}" aria-pressed="${S.reason === i}">${S.reason === i ? '✓ ' : '○ '}<span>${rich(g.reasons[i])}</span></button>`).join('')}</div><div id="proof"></div>`;
+            $$('.rep', stage).forEach((b) => b.addEventListener('click', () => { S.sel = +b.dataset.i; FV.audio.click(); draw(); }));
+            $$('.reason', stage).forEach((b) => b.addEventListener('click', () => { S.reason = +b.dataset.r; FV.audio.click(); draw(); }));
+          };
+          S._draw = draw; draw();
+        },
+        check() {
+          if (S.sel === null) return { ok: false, say: 'בחרו קודם ייצוג יוצא דופן.', hint: 'השוו בין ארבעת הייצוגים.' };
+          if (S.sel !== g.odd) return { ok: false, say: wrongSay(), hint: 'השוו את הציורים ולא רק את צורת הכתיבה: האם שלושה אחרים מייצגים אותה כמות?', after: () => { S.sel = null; S._draw(); } };
+          if (S.reason === null) return { ok: false, say: 'הייצוג שבחרתם הוא היוצא דופן! עכשיו בחרו נימוק.', hint: 'בחרו מהרשימה את ההסבר שמתאים.' };
+          if (S.reason !== 0) return { ok: false, say: 'הבחירה נכונה, אבל הנימוק עדיין לא מדויק.', hint: 'נסו נימוק שמתבסס על הכמות עצמה – על כמה שלמים וחלקים יש בכל ייצוג.', after: () => { S.reason = null; S._draw(); } };
+          const proof = g.items.map((it, i) => {
+            const v = repVal(it); const odd = i === g.odd; const d = v.d; const strips = Math.ceil(v.n / d);
+            return `<div class="proofrow${odd ? ' oddrow' : ''}"><span class="lab">${repHTML(it)}</span>${FV.stripsFor(d, v.n, strips, { mark: false })}${odd ? '<span class="tag">✗ יוצא דופן</span>' : '<span class="tag" style="color:#3ddc84">= אותה כמות</span>'}</div>`;
+          }).join('');
+          return { ok: true, say: FV.pick(FV.HOST.right), explain: 'שלושה ייצוגים מסתיימים באותו מקום על הרצועות, והרביעי שונה.', afterHTML: `<div class="proof">${proof}</div>` };
+        },
+      };
+    });
+  }
+
+  /* ====================== משימה 5 – מפעל הפיצות ====================== */
+  const pizzaSVG = (kind) => {
+    const tops = '<circle cx="36" cy="38" r="5" fill="#d9392b"/><circle cx="62" cy="44" r="5" fill="#d9392b"/><circle cx="50" cy="62" r="4" fill="#4f9a3b"/><circle cx="30" cy="62" r="3.5" fill="#4f9a3b"/><circle cx="70" cy="66" r="3.5" fill="#6b4b2a"/>';
+    if (kind === 'w') return `<svg viewBox="0 0 100 100" role="img" aria-label="פיצה שלמה"><circle cx="50" cy="50" r="46" fill="#f2b84b" stroke="#b8741a" stroke-width="5"/><circle cx="50" cy="50" r="37" fill="#f7d27a"/>${tops}
+      <path d="M50 50 L50 6 M50 50 L88 72 M50 50 L12 72" stroke="#b8741a" stroke-width="2.5"/></svg>`;
+    return `<svg viewBox="0 0 100 90" role="img" aria-label="שליש פיצה"><path d="M50 78 L6 50 A52 52 0 0 1 94 50 Z" fill="#f7d27a" stroke="#b8741a" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M12 52 A48 48 0 0 1 88 52" stroke="#e0993a" stroke-width="7" fill="none"/><circle cx="40" cy="52" r="5" fill="#d9392b"/><circle cx="62" cy="48" r="4.5" fill="#d9392b"/><circle cx="50" cy="64" r="3.5" fill="#4f9a3b"/></svg>`;
+  };
+  function task5() {
+    const T = FV.T5; const S = { pool: { w: T.inventory.w, t: T.inventory.t }, trays: T.orders.map(() => ({ w: 0, t: 0 })), msgs: {}, lock: T.orders.map(() => false) };
+    const loc = (from) => (from === 'pool' ? S.pool : S.trays[from]);
+    const build = {
+      instr: 'גררו פיצות שלמות ושלישים אל מגשי ההזמנות. אפשר לפרק פיצה לשלישים ולחבר שלושה שלישים לפיצה.',
+      hints: FV.TASKS[4].hints,
+      render(stage) {
+        const piece = (type, from) => `<button type="button" class="pz ${type === 't' ? 'third' : ''}" data-type="${type}" data-from="${from}" aria-label="${type === 'w' ? 'פיצה שלמה' : 'שליש פיצה'}">${pizzaSVG(type)}</button>`;
+        const draw = () => {
+          let tr = '';
+          T.orders.forEach((N, i) => {
+            const t = S.trays[i]; const w = Math.floor(N / 3), r = N % 3;
+            tr += `<div class="tray3${S.lock[i] ? ' ok' : ''}" data-tray="${i}"><div class="ord"><span class="eq">${frac(N, 3)}<span class="op">=</span>${mixed(w, r, 3)}</span> <span>פיצה</span> ${S.lock[i] ? '<span class="mark">✓</span>' : ''}</div>
+              <div class="pieces">${Array(t.w).fill(0).map(() => piece('w', i)).join('')}${Array(t.t).fill(0).map(() => piece('t', i)).join('')}</div>
+              ${S.msgs[i] ? `<div class="ask"><span class="mark">!</span> ${esc(S.msgs[i])}</div>` : ''}</div>`;
+          });
+          stage.innerHTML = `<div class="pizzaboard"><div class="pool zone-wrap"><h3>המלאי במפעל</h3><div class="pieces" id="poolp">${Array(S.pool.w).fill(0).map(() => piece('w', 'pool')).join('')}${Array(S.pool.t).fill(0).map(() => piece('t', 'pool')).join('')}</div>
+            <div class="count">${S.pool.w} פיצות שלמות, ${S.pool.t} שלישים</div>
+            <div class="opbtns"><button type="button" class="ibtn" id="brk">✂ פרקו פיצה לשלישים</button><button type="button" class="ibtn" id="cmb">🔗 חברו 3 שלישים</button></div></div>
+            <div class="trays">${tr}</div></div>`;
+          $$('.pz', stage).forEach((b) => D.attach(b, { type: b.dataset.type, from: b.dataset.from === 'pool' ? 'pool' : +b.dataset.from }));
+          D.zone($('.pool', stage), (p) => move(p, 'pool'), 'המלאי – החזרת חלק למלאי');
+          $$('.tray3', stage).forEach((z) => { const i = +z.dataset.tray; if (!S.lock[i]) D.zone(z, (p) => move(p, i), `מגש הזמנה ${i + 1}`); });
+          $('#brk').onclick = brk; $('#cmb').onclick = cmb;
+        };
+        const move = (p, to) => {
+          if (p.from === to) return; const a = loc(p.from), b = loc(to); const k = p.type;
+          if (a[k] <= 0) return; a[k]--; b[k]++; S.msgs[to] = null; FV.audio.drop(); draw();
+        };
+        const brk = () => {
+          const s = D.sel && D.sel.payload; let f = s && s.type === 'w' ? s.from : (S.pool.w > 0 ? 'pool' : S.trays.findIndex((t, i) => t.w > 0 && !S.lock[i]));
+          if (f === -1 || f === undefined || loc(f).w <= 0) { FV.announce('אין פיצה שלמה לפירוק'); return; }
+          const l = loc(f); l.w--; l.t += 3; D.clear(); FV.audio.drop(); draw();
+        };
+        const cmb = () => {
+          const s = D.sel && D.sel.payload; let f = s && s.type === 't' && loc(s.from).t >= 3 ? s.from : (S.pool.t >= 3 ? 'pool' : S.trays.findIndex((t, i) => t.t >= 3 && !S.lock[i]));
+          if (f === -1 || f === undefined || loc(f).t < 3) { FV.announce('צריך לפחות שלושה שלישים באותו מקום'); FV.toast('צריך שלושה שלישים באותו מקום'); return; }
+          const l = loc(f); l.t -= 3; l.w++; D.clear(); FV.audio.success(); draw();
+        };
+        S._draw = draw; draw();
+      },
+      check() {
+        let ok = true;
+        T.orders.forEach((N, i) => {
+          if (S.lock[i]) return; const t = S.trays[i]; const total = t.w * 3 + t.t; const w = Math.floor(N / 3), r = N % 3;
+          if (t.w === w && t.t === r) { S.lock[i] = true; S.msgs[i] = null; return; }
+          ok = false;
+          S.msgs[i] = total !== N ? 'בדקו: כמה שלישים יש בהזמנה כולה, ומה ההזמנה מבקשת?' : 'אפשר לחבר שלושה שלישים לפיצה שלמה.';
+        });
+        S._draw();
+        if (ok && S.pool.w === 0 && S.pool.t === 0) return { ok: true, say: FV.pick(FV.HOST.right), explain: 'כל ההזמנות הורכבו, בלי חוסר ובלי עודף! בסך הכול 34 שלישים: [[34/3]] פיצות.' };
+        if (ok) return { ok: false, say: 'כל ההזמנות נכונות, אבל נשארו חלקים במלאי.', hint: 'בדקו שהשתמשתם בכל החלקים.' };
+        return { ok: false, say: wrongSay(), hint: 'קראו את ההערה ליד כל הזמנה שאינה נכונה והתאימו את המגש.' };
+      },
+    };
+    const why = { sel: null };
+    const reasons = FV.shuffle([0, 1, 2]);
+    return [build, {
+      instr: 'כיצד ידעתם כמה פיצות שלמות וכמה שלישים דרושים לכל הזמנה?',
+      hints: ['חשבו על ההזמנה [[5/3]] – כמה פעמים נכנסים שלושה שלישים בחמישה שלישים?'],
+      render(stage) {
+        const draw = () => {
+          stage.innerHTML = `<div class="reasons" role="group">${reasons.map((i) => `<button type="button" class="reason" data-r="${i}" aria-pressed="${why.sel === i}">${why.sel === i ? '✓ ' : '○ '}<span>${rich(T.reasons[i])}</span></button>`).join('')}</div>`;
+          $$('.reason', stage).forEach((b) => b.addEventListener('click', () => { why.sel = +b.dataset.r; FV.audio.click(); draw(); }));
+        }; draw();
+      },
+      check() {
+        if (why.sel === null) return { ok: false, say: 'בחרו הסבר.', hint: 'בחרו מבין האפשרויות.' };
+        if (why.sel === 0) return { ok: true, say: FV.pick(FV.HOST.right), explain: 'בדיוק: מחלקים ב־3. למשל [[10/3]]: 3 פיצות שלמות ושארית של שליש אחד, כלומר [[10/3]] = [[3 1/3]].' };
+        return { ok: false, say: wrongSay(), hint: 'נסו את [[5/3]]: שלושה שלישים הם פיצה אחת. כמה פיצות שלמות יש, וכמה שלישים נשארו?' };
+      },
+    }];
+  }
+
+  FV.taskDefs = [task1, task2, task3, task4, task5];
+  FV.pizzaSVG = pizzaSVG;
+})();
+
+/* DIGITAL – סוכני הכספת: מסכים, מנחה, מנגנון המשימות, כספת, תעודה והגדרות */
+(function () {
+  'use strict';
+  const FV = window.FV; const { $, $$, rich, esc } = FV; const A = FV.audio; const H = FV.HOST;
+  const st = () => FV.state; const studio = () => $('#studio');
+  let introToken = 0; let prevScreen = 'splash'; let turn = 0;
+
+  /* ---------- מסך פתיחה (לחיצה ראשונה מפעילה שמע) ---------- */
+  function renderSplash() {
+    const box = $('#splashBtns'); const s = st();
+    const cont = s.names.length > 0 || s.done > 0 || s.won;
+    box.innerHTML = cont
+      ? '<button class="btn gold big" id="bContinue">▶ המשך משחק</button><button class="btn ghost" id="bNew">התחלת משחק חדש</button>'
+      : '<button class="btn gold big" id="bStart">▶ התחלה</button>';
+    if (cont) { $('#bContinue').onclick = continueGame; $('#bNew').onclick = newGame; } else $('#bStart').onclick = beginGame;
+    ($('#bContinue') || $('#bStart')).focus();
+  }
+  async function newGame() {
+    const ok = await FV.confirm('התחלת משחק חדש?', 'כל ההתקדמות והשמות שנשמרו יימחקו. האם להמשיך?', 'כן, התחילו מחדש', 'ביטול');
+    if (!ok) return;
+    FV.resetGame(); FV.updateDigits(); $('#taskRoot').innerHTML = ''; resetVault(); renderSplash(); FV.show('splash'); studio().classList.remove('dark', 'lit'); document.body.classList.remove('intro-lit');
+  }
+  function beginGame() { A.init(); A.musicOn(); st().started = true; FV.save(); if (st().settings.skipIntro) { litStudio(); goSetup(); } else playIntro(); }
+  function continueGame() {
+    A.init(); A.musicOn(); litStudio();
+    const s = st();
+    if (s.won) return showVault(true);
+    if (s.done >= 5) return showVault(); startTask(s.done);
+  }
+  const litStudio = () => { studio().classList.add('lit'); document.body.classList.add('intro-lit'); };
+
+  /* ---------- פתיח 8–12 שניות ---------- */
+  async function playIntro() {
+    const tok = ++introToken; const stg = $('#introStage'); FV.show('intro'); stg.innerHTML = '';
+    const alive = () => tok === introToken;
+    $('#skipIntro').focus();
+    stg.innerHTML = `<div class="countdown" id="cdn" aria-live="assertive"></div>`;
+    for (const n of [3, 2, 1]) { if (!alive()) return; const c = $('#cdn'); c.textContent = n; c.style.animation = 'none'; void c.offsetWidth; c.style.animation = ''; A.tick(); await FV.wait(1000); }
+    if (!alive()) return;
+    stg.innerHTML = ''; litStudio(); A.fanfare(); await FV.wait(1800); if (!alive()) return;
+    stg.innerHTML = `<div class="logo reveal" id="r0"></div><h1 class="title reveal" id="r1">${FV.TITLE} ${FV.BRAND}</h1><h2 class="title reveal" style="font-size:2rem" id="r2"><small style="font-size:1em;margin:0">${FV.SUBTITLE}</small></h2>
+      <p class="sigbig reveal" id="r3"></p><p class="reveal" id="r4"><button class="btn gold big" id="enter">🚪 היכנסו לאולפן</button></p>`;
+    $('#r0').textContent = FV.BRAND; $('#r3').textContent = FV.SIGNATURE;
+    for (const id of ['r1', 'r2', 'r3', 'r4']) { if (!alive()) return; $('#' + id).classList.add('in'); await FV.wait(id === 'r1' ? 1200 : 900); }
+    $('#r0').classList.add('in'); $('#enter').onclick = () => { introToken++; goSetup(); }; $('#enter').focus();
+  }
+  function skipIntro() { introToken++; litStudio(); const s = st(); if (s.names.length || s.done) { continueGame(); } else goSetup(); }
+
+  /* ---------- בחירת משחק ושמות ---------- */
+  function goSetup() {
+    FV.show('setup'); const pair = st().mode === 'pair'; setMode(pair ? 'pair' : 'solo'); $('#name1').value = st().names[0] || ''; $('#name2').value = st().names[1] || ''; $('#name1').focus();
+  }
+  function setMode(m) {
+    st().mode = m; $('#modeSolo').setAttribute('aria-pressed', String(m === 'solo')); $('#modePair').setAttribute('aria-pressed', String(m === 'pair'));
+    $('#name2wrap').hidden = m !== 'pair'; FV.save();
+  }
+  function ready() {
+    const n1 = $('#name1').value.trim(); const n2 = $('#name2').value.trim();
+    if (st().mode === 'pair' && (!n1 || !n2)) { FV.toast('במשחק זוגי יש להזין שני שמות'); (n1 ? $('#name2') : $('#name1')).focus(); return; }
+    st().names = (st().mode === 'pair' ? [n1, n2] : [n1]).filter(Boolean); FV.save(); welcome();
+  }
+  async function welcome() {
+    FV.show('welcome'); $('#welcomeTitle').textContent = H.welcome; const ag = $('#agents'); ag.innerHTML = ''; $('#btnGoTask').hidden = true;
+    const names = st().names.length ? st().names : ['סוכן/ת סודי/ת'];
+    names.forEach((n) => { const d = document.createElement('div'); d.className = 'agent'; d.textContent = n; ag.appendChild(d); });
+    A.fanfare(); FV.announce(H.welcome + ' ' + names.join(' ו'));
+    await FV.wait(names.length > 1 ? 2400 : 1700); $('#btnGoTask').hidden = false; $('#btnGoTask').focus();
+  }
+
+  /* ---------- מנגנון המשימות ---------- */
+  function startTask(ti) {
+    FV.show('task'); const T = FV.TASKS[ti]; const subs = FV.taskDefs[ti](); let si = 0; let busy = false; let hi = 0; turn = 0;
+    const root = $('#taskRoot'); studio().classList.remove('dark');
+    root.innerHTML = `<div class="gamegrid"><div class="taskcol">
+      <div class="theader"><span class="tnum">משימה ${ti + 1} מתוך 5</span><h2></h2><span class="turn" id="turn" hidden></span></div>
+      <p class="instr" id="instr"></p><div class="led" id="stage"></div><div class="fb" id="fb" role="status" aria-live="polite"></div>
+      <div class="actions"><button class="btn ghost" id="btnHelp">🛟 גלגל ההצלה המתמטי</button><button class="btn gold" id="btnLock">זו התשובה שלנו!</button><button class="btn" id="btnNext" hidden></button></div></div>
+      <aside class="hostcol"><div class="bubble" id="bubble" aria-live="polite"></div>${FV.hostSVG()}<div class="hostname">${H.name} – המנחה</div></aside></div>`;
+    $('h2', root).textContent = T.title;
+    const stage = $('#stage'), fb = $('#fb'), bL = $('#btnLock'), bN = $('#btnNext'), bH = $('#btnHelp');
+    const showTurn = () => { const t = $('#turn'); if (st().mode === 'pair' && st().names.length === 2) { t.hidden = false; t.textContent = 'התור של: ' + st().names[turn % 2]; } else t.hidden = true; };
+    const load = () => {
+      const sub = subs[si]; busy = false; hi = 0; stage.classList.remove('ok', 'bad'); fb.className = 'fb'; fb.innerHTML = '';
+      $('#instr').textContent = (subs.length > 1 ? `שלב ${si + 1} מתוך ${subs.length}: ` : '') + sub.instr; // הוראה גלויה בכל עת
+      sub.render(stage); bL.hidden = false; bL.disabled = false; bN.hidden = true; showTurn();
+      FV.hostSay(si === 0 ? T.pre : H.ready); FV.announce('הוראה: ' + sub.instr);
+    };
+    const showFb = (cls, html) => { fb.className = 'fb show ' + cls; fb.innerHTML = html; fb.scrollIntoView({ block: 'nearest', behavior: FV.reduced() ? 'auto' : 'smooth' }); };
+    async function lock() {
+      if (busy) return; busy = true; bL.disabled = true; fb.className = 'fb'; stage.classList.remove('ok', 'bad'); FV.drag.clear();
+      const ov = document.createElement('div'); ov.className = 'lockov'; ov.innerHTML = '<div><div class="lk" aria-hidden="true">🔒</div>נועלים את התשובה…</div>'; stage.appendChild(ov);
+      A.tension(); FV.hostSay(H.lockWait); await FV.wait(1300); ov.remove(); A.lock();
+      const sub = subs[si]; const r = sub.check();
+      if (r.ok) {
+        A.success(); stage.classList.add('ok'); FV.confetti(16);
+        let html = `<span class="ic">✓ נכון!</span><b>${rich(r.say)}</b>${r.explain ? '<div>' + rich(r.explain) + '</div>' : ''}${r.afterHTML || ''}`;
+        FV.hostSay(r.say); bL.hidden = true; turn++;
+        if (si < subs.length - 1) { showFb('ok', html); bN.textContent = 'לשלב הבא ➜'; bN.hidden = false; bN.onclick = () => { si++; load(); }; bN.focus(); }
+        else {
+          if (ti >= st().done) { st().done = ti + 1; FV.save(); }
+          FV.updateDigits(); A.digit();
+          html += `<div class="digitpop"><span>🔑 קיבלתם ספרה לקוד הכספת:</span><span class="big" aria-label="הספרה ${FV.DIGITS[ti]}">${FV.DIGITS[ti]}</span></div>`;
+          showFb('ok', html); FV.hostSay(H.digit); FV.announce(`הספרה ${FV.DIGITS[ti]} נחשפה`);
+          bN.textContent = ti < 4 ? 'למשימה הבאה ➜' : '🔐 לכספת!'; bN.hidden = false; bN.onclick = () => (ti < 4 ? startTask(ti + 1) : showVault()); bN.focus();
+        }
+      } else {
+        A.wrong(); stage.classList.add('bad'); setTimeout(() => stage.classList.remove('bad'), 1400);
+        showFb('bad', `<span class="ic">! נסו שוב</span><b>${rich(r.say)}</b>${r.hint ? '<div>💡 ' + rich(r.hint) + '</div>' : ''}<div>אפשר לנסות שוב.</div>`);
+        FV.hostSay(r.say + (r.hint ? ' ' + r.hint : '')); if (r.after) r.after(); bL.disabled = false; busy = false;
+      }
+    }
+    bL.onclick = lock;
+    bH.onclick = () => {
+      const hs = subs[si].hints; const h = hs[hi % hs.length]; hi++;
+      const txt = typeof h === 'string' ? h : h.text; if (typeof h !== 'string' && h.run) h.run();
+      FV.hostSay(txt); showFb('bad', `<span class="ic">🛟 רמז</span>${rich(txt)}`); fb.classList.remove('bad'); fb.classList.add('ok'); fb.style.borderColor = 'var(--teal)'; A.click();
+    };
+    stage.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches && e.target.matches('input.num')) { e.preventDefault(); bL.click(); } });
+    load();
+  }
+
+  /* ---------- הכספת ---------- */
+  function resetVault() { $('#vault').className = 'vault'; $('#fin').classList.remove('on'); $('#codeui').hidden = false; $('#rays').classList.remove('on'); $$('#vault .bolt').forEach((b) => b.classList.remove('key')); entered = ''; drawCode(); }
+  let entered = '';
+  function drawCode() {
+    const cv = $('#codeview'); cv.innerHTML = ''; for (let i = 0; i < 5; i++) { const d = document.createElement('div'); d.className = 'dslot' + (entered[i] ? ' got' : ''); d.textContent = entered[i] || '•'; cv.appendChild(d); }
+    cv.setAttribute('aria-label', 'הקוד שהוקלד: ' + (entered || 'עדיין ריק'));
+  }
+  function showVault(won) {
+    FV.show('vault'); studio().classList.add('dark'); resetVault(); $('#vhost').innerHTML = FV.hostSVG().replace('class="host"', 'class="host" style="width:100%"');
+    setTimeout(() => { const r = $('#vault').getBoundingClientRect(); const g = $('.spot.gold'); if (g) g.style.left = (r.left + r.width / 2 - innerWidth * 0.17) + 'px'; }, 80); $('#vbubble').textContent = H.vault; A.say(H.vault);
+    if (won) { $('#vault').classList.add('open', 'spin'); $('#codeui').hidden = true; $('#fin').classList.add('on'); $('#rays').classList.add('on'); fillFinale(); return; }
+    $('#keypad').querySelector('button').focus({ preventScroll: true });
+  }
+  function fillFinale() { $('#finTitle').textContent = FV.FINALE.title; $('#finText').textContent = FV.FINALE.text; }
+  function press(k) {
+    A.click(); const msg = $('#codemsg'); msg.textContent = '';
+    if (k === 'del') entered = entered.slice(0, -1); else if (k === 'go') return tryOpen(); else if (entered.length < 5) entered += k;
+    drawCode(); if (entered.length === 5 && k !== 'del') $('#keypadGo').focus();
+  }
+  async function tryOpen() {
+    const msg = $('#codemsg');
+    if (entered.length < 5) { msg.textContent = 'הקוד כולל חמש ספרות. השלימו את כל הספרות.'; return; }
+    if (entered !== FV.CODE) { A.wrong(); msg.textContent = 'הקוד אינו נכון עדיין. הביטו בספרות שאספתם בראש המסך (לפי סדר המשימות) ונסו שוב.'; entered = ''; drawCode(); return; }
+    // קוד נכון – אנימציית פתיחה
+    $('#codeui').hidden = true; const v = $('#vault'); st().won = true; FV.save(); FV.announce('הקוד נכון! הכספת נפתחת');
+    A.lock(); v.classList.add('spin'); await FV.wait(1100);
+    $$('#vault .bolt').forEach((b) => b.classList.add('key')); await keyFlight(); A.lock(); await FV.wait(500);
+    v.classList.add('open'); A.victory(); await FV.wait(1000); $('#rays').classList.add('on'); FV.confetti(70); setTimeout(() => FV.confetti(50), 1400);
+    fillFinale(); $('#fin').classList.add('on'); $('#vbubble').textContent = 'יש! הכספת נפתחה!'; $('#toCert').focus();
+  }
+  async function keyFlight() {
+    if (FV.reduced() || !Element.prototype.animate) return;
+    const vr = $('#vault').getBoundingClientRect(); const tx = vr.left + vr.width / 2, ty = vr.top + vr.height / 2;
+    const slots = $$('#bar .dslot'); const anims = slots.map((s, i) => {
+      const r = s.getBoundingClientRect(); const k = document.createElement('div'); k.className = 'keyfly'; k.textContent = '🔑'; document.body.appendChild(k);
+      const a = k.animate([{ left: r.left + 'px', top: r.top + 'px', opacity: 1, transform: 'scale(1)' }, { left: tx + 'px', top: ty + 'px', opacity: .1, transform: 'scale(.4) rotate(360deg)' }], { duration: 1000, delay: i * 120, easing: 'ease-in', fill: 'forwards' });
+      a.onfinish = () => k.remove(); return a.finished;
+    });
+    try { await Promise.all(anims); } catch (e) { /* ignore */ }
+  }
+
+  /* ---------- תעודה ---------- */
+  function showCert() {
+    FV.show('cert'); studio().classList.remove('dark'); const nm = FV.state.certName != null ? FV.state.certName : FV.playerLabel();
+    $('#certTitle').textContent = FV.CERT.title; $('#certPre').textContent = FV.CERT.pre; $('#certPost').textContent = FV.CERT.post; $('#certInput').value = nm; setCertName(nm);
+  }
+  function setCertName(v) { const e = $('#certName'); e.textContent = v.trim() || '________'; }
+
+  /* ---------- הגדרות למורה ---------- */
+  const SET_ITEMS = [
+    ['music', 'מוזיקת רקע'], ['sfx', 'אפקטים קוליים'], ['reduce', 'ביטול אנימציות מורכבות'], ['skipIntro', 'דילוג על הפתיח'],
+    ['timer', 'שעון מעודד (ללא פסילה)'], ['narrate', 'קריינות בעברית (אם קיימת בדפדפן)'], ['demo', 'מצב הדגמה כיתתית (כתב גדול ומעבר חופשי)'], ['solutions', 'הצגת פתרונות והסברים למורה'],
+  ];
+  function showSettings() {
+    prevScreen = FV.screen === 'settings' ? prevScreen : FV.screen; FV.show('settings'); renderSettings();
+  }
+  function renderSettings() {
+    const s = st().settings; const list = $('#setList'); list.innerHTML = '';
+    SET_ITEMS.forEach(([k, label]) => {
+      const row = document.createElement('div'); row.className = 'setrow';
+      row.innerHTML = `<span class="t">${esc(label)}</span><button class="tog" role="switch" aria-checked="${!!s[k]}">${s[k] ? 'פעיל' : 'כבוי'}</button>`;
+      row.querySelector('button').onclick = () => { s[k] = !s[k]; if (k === 'music') (s.music ? A.musicOn() : A.stopMusic()); if (k === 'timer') timerSync(); FV.applySettings(); renderSettings(); };
+      list.appendChild(row);
+    });
+    const fs = document.createElement('div'); fs.className = 'setrow'; fs.innerHTML = '<span class="t">תצוגת מסך מלא</span><button class="tog" id="setFull" role="button">מעבר למסך מלא</button><button class="btn ghost" id="setReset" style="min-height:44px">איפוס המשחק</button>';
+    list.appendChild(fs); $('#setFull').onclick = FV.fullscreen; $('#setReset').onclick = async () => { await newGame(); };
+    $('#demoTools').hidden = !s.demo; const jump = $('#jump'); jump.innerHTML = '';
+    if (s.demo) {
+      FV.TASKS.forEach((t, i) => { const b = document.createElement('button'); b.className = 'btn ghost'; b.textContent = `${i + 1}. ${t.title}`; b.onclick = () => { st().started = true; startTask(i); }; jump.appendChild(b); });
+      const bv = document.createElement('button'); bv.className = 'btn ghost'; bv.textContent = '🔐 כספת'; bv.onclick = () => showVault(); jump.appendChild(bv);
+      const bc = document.createElement('button'); bc.className = 'btn ghost'; bc.textContent = '🎓 תעודה'; bc.onclick = showCert; jump.appendChild(bc);
+    }
+    const sol = $('#solutions'); sol.hidden = !s.solutions;
+    sol.innerHTML = s.solutions ? '<h3>פתרונות והסברים (למורה בלבד)</h3><ol>' + FV.TASKS.map((t) => `<li><b>${esc(t.title)}:</b> ${rich(t.teacher)}</li>`).join('') + `</ol><p>קוד הכספת: <bdi dir="ltr"><b>${FV.CODE}</b></bdi></p>` : '';
+  }
+  let timerInt = null; let t0 = 0;
+  function timerSync() {
+    const el = $('#timer'); clearInterval(timerInt); if (!st().settings.timer) { el.hidden = true; return; }
+    el.hidden = false; t0 = Date.now();
+    const tick = () => { const sec = Math.floor((Date.now() - t0) / 1000); el.textContent = '⏱ ' + String(Math.floor(sec / 60)).padStart(2, '0') + ':' + String(sec % 60).padStart(2, '0'); if (sec > 0 && sec % 120 === 0 && FV.screen === 'task') FV.hostSay('קחו את הזמן – חשיבה טובה לוקחת זמן, ואין שום לחץ.'); };
+    tick(); timerInt = setInterval(tick, 1000);
+  }
+
+  /* ---------- אתחול ---------- */
+  function init() {
+    FV.fillSig(); FV.applySettings(); FV.updateDigits(); timerSync();
+    $('#bigvault').innerHTML = '<div class="vault"><div class="body"></div><div class="door"><i class="bolt"></i><i class="bolt"></i><i class="bolt"></i><i class="bolt"></i><i class="bolt"></i><div class="dial">D</div><i class="handle"></i></div></div>';
+    const dg = $('#digits'); dg.innerHTML = ''; for (let i = 0; i < 5; i++) { const d = document.createElement('div'); d.className = 'dslot'; dg.appendChild(d); } FV.updateDigits();
+    const kp = $('#keypad'); [1, 2, 3, 4, 5, 6, 7, 8, 9, 'del', 0, 'go'].forEach((k) => {
+      const b = document.createElement('button'); b.className = 'btn' + (k === 'go' ? ' gold' : ''); b.type = 'button';
+      b.textContent = k === 'del' ? '⌫' : (k === 'go' ? 'פתחו' : k); b.setAttribute('aria-label', k === 'del' ? 'מחיקת ספרה' : (k === 'go' ? 'פתחו את הכספת' : 'ספרה ' + k));
+      if (k === 'go') { b.id = 'keypadGo'; b.style.fontSize = '1.1rem'; } b.onclick = () => press(String(k)); kp.appendChild(b);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (FV.screen !== 'vault' || $('#codeui').hidden) return; if (/^[0-9]$/.test(e.key)) press(e.key); else if (e.key === 'Backspace') press('del'); else if (e.key === 'Enter' && document.activeElement.tagName !== 'BUTTON') press('go');
+    });
+    $('#skipIntro').onclick = skipIntro; $('#modeSolo').onclick = () => setMode('solo'); $('#modePair').onclick = () => setMode('pair');
+    $('#btnReady').onclick = ready; $('#btnGoTask').onclick = () => startTask(st().done >= 5 ? 4 : st().done);
+    ['name1', 'name2'].forEach((i) => $('#' + i).addEventListener('keydown', (e) => { if (e.key === 'Enter') ready(); }));
+    $('#toCert').onclick = showCert; $('#btnBackVault').onclick = () => showVault(true); $('#btnPrint').onclick = () => window.print();
+    $('#certInput').addEventListener('input', (e) => { st().certName = e.target.value; FV.save(); setCertName(e.target.value); });
+    $('#btnMusic').onclick = () => { const s = st().settings; s.music = !s.music; s.music ? A.musicOn() : A.stopMusic(); FV.applySettings(); };
+    $('#btnSfx').onclick = () => { const s = st().settings; s.sfx = !s.sfx; FV.applySettings(); };
+    $('#btnFull').onclick = FV.fullscreen; $('#btnSettings').onclick = showSettings; $('#splashSettings').onclick = showSettings; $('#btnNewBar').onclick = newGame;
+    $('#setBack').onclick = () => { FV.show(prevScreen === 'settings' ? 'splash' : prevScreen); if (FV.screen === 'splash') renderSplash(); };
+    renderSplash(); FV.show('splash');
+    $('#bar').hidden = true;
+  }
+  document.addEventListener('DOMContentLoaded', init);
+  FV.debug = { startTask, showVault, showCert, showSettings, press };
+})();
+</script>
+</body>
+</html>
