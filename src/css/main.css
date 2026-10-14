@@ -370,3 +370,119 @@ body.intro-lit[data-screen=intro] #studio .bigvault{opacity:.3}
 .keypad .btn{min-height:56px}
 @media (max-width:900px){.vgrid{grid-template-columns:1fr}.vault{width:min(34vh,280px)}}
 .fin.on{background:rgba(5,8,34,.72);border-radius:22px;padding:14px 16px}
+
+/* =====================================================================
+   ערכת עיצוב v2 – אולפן בהיר ומבריק (זכוכית, כחול / מג'נטה / כתום־זהב,
+   כותרות תלת־ממדיות, שלטי נורות). משנה מראה בלבד; הלוגיקה לא מושפעת.
+   ===================================================================== */
+:root{
+  --blue:#1673ff; --blue-d:#0a3fa8; --blue-dd:#06267a; --mag:#e0239b; --mag-d:#9a0f6b; --orange:#ff9d1c; --gold:#ffc83a;
+  --teal:#18b8f0; --green:#2fcf7a; --ink:#ffffff; --muted:#cfdcff; --panel:rgba(8,48,140,.94); --line:rgba(255,255,255,.45);
+  --navy:#0b2a6b;
+}
+body{background:#dfe7f7}
+.t3d,.title,.logo,.theader h2,.fin h2,.countdown{
+  -webkit-text-stroke:0; paint-order:stroke fill;
+}
+/* אולפן בהיר */
+#studio{background:radial-gradient(ellipse at 50% 10%,#ffffff 0%,#eef2ff 38%,#c9d6f2 100%)}
+#studio .dots{opacity:1;mask-image:none;
+  background-image:
+   radial-gradient(circle at 12% 18%,#e0239b 0 4px,transparent 5px),radial-gradient(circle at 27% 8%,#1673ff 0 4px,transparent 5px),
+   radial-gradient(circle at 44% 22%,#ffc83a 0 4px,transparent 5px),radial-gradient(circle at 63% 12%,#e0239b 0 3px,transparent 4px),
+   radial-gradient(circle at 78% 26%,#18b8f0 0 4px,transparent 5px),radial-gradient(circle at 91% 10%,#ff9d1c 0 4px,transparent 5px),
+   radial-gradient(circle at 7% 52%,#18b8f0 0 3px,transparent 4px),radial-gradient(circle at 96% 48%,#e0239b 0 3px,transparent 4px),
+   radial-gradient(circle at 20% 70%,#ffc83a 0 3px,transparent 4px),radial-gradient(circle at 84% 72%,#1673ff 0 3px,transparent 4px);
+  background-size:520px 420px}
+#studio::before,#studio::after{content:"";position:absolute;top:0;bottom:26%;width:5.5vw;min-width:46px;
+  background:linear-gradient(90deg,#c76a00,#ffb43a 40%,#ffe08a 55%,#d97a00);box-shadow:0 0 30px rgba(255,160,30,.45);opacity:.92}
+#studio::before{left:2.5%}#studio::after{right:2.5%;background:linear-gradient(90deg,#082e86,#2b86ff 45%,#9cc8ff 58%,#0b3fa8);box-shadow:0 0 30px rgba(30,110,255,.4)}
+#studio .vignette{background:linear-gradient(180deg,rgba(255,255,255,0) 60%,rgba(40,70,160,.28) 100%)}
+#studio .vignette::before{content:"";position:absolute;left:0;right:0;top:0;height:46px;
+  background:radial-gradient(circle at 50% 22px,#fffbe0 0 7px,#ffd75a 8px,rgba(255,200,60,.35) 14px,transparent 16px) 0 0/72px 46px repeat-x,linear-gradient(180deg,#3a4a78,#1b2650);
+  box-shadow:0 6px 18px rgba(20,30,80,.35)}
+#studio .floor{background:linear-gradient(180deg,rgba(255,255,255,0),#f4f7ff 20%,#d3def5 100%);border-top:0;
+  box-shadow:inset 0 14px 0 -6px #ff9d1c,inset 0 22px 24px -18px rgba(255,170,40,.9)}
+#studio .floor::after{opacity:.5;background:repeating-linear-gradient(90deg,rgba(60,100,200,.35) 0 1px,transparent 1px 90px),repeating-linear-gradient(0deg,rgba(60,100,200,.25) 0 1px,transparent 1px 48px)}
+#studio .stage{background:radial-gradient(ellipse at 50% 35%,#ffffff 0%,#dbe6ff 55%,#9fb8f0 100%);
+  box-shadow:0 0 0 8px #1673ff,0 0 0 16px #fff,0 0 0 24px #e0239b,0 0 0 30px #ffc83a,0 26px 60px rgba(30,60,160,.45)}
+#studio .stage::after{border:3px solid rgba(22,115,255,.45)}
+.spot{background:linear-gradient(180deg,rgba(255,236,160,.75),rgba(255,236,160,.18) 45%,transparent 80%);top:46px;height:105%}
+#studio.lit .spot,.spot{opacity:.5}
+.spot.gold{background:linear-gradient(180deg,rgba(255,210,70,.8),rgba(255,210,70,.15) 45%,transparent 85%)}
+#studio.dim{background:radial-gradient(ellipse at 50% 30%,#1c2a8a 0%,#0b1245 45%,#050818 100%)}
+#studio.dim::before,#studio.dim::after,#studio.dim .dots,#studio.dim .floor,#studio.dim .stage{opacity:.12}
+#studio.dim .spot,#studio.dim .vignette::before{opacity:0}
+#studio.dark{background:radial-gradient(ellipse at 50% 35%,#16257e 0%,#0a1148 55%,#03061c 100%)}
+#studio.dark::before,#studio.dark::after,#studio.dark .dots{opacity:.12}
+#studio.dark .floor{background:linear-gradient(180deg,rgba(0,0,0,0),#0a1150 40%,#04072a);box-shadow:inset 0 10px 0 -6px #ffc83a}
+#studio.dark .stage{background:radial-gradient(ellipse at 50% 40%,#2a3fb0,#14206d 60%,#0a1148);box-shadow:0 0 0 6px #ffc83a,0 0 0 12px #e0239b,0 20px 70px rgba(255,200,60,.35)}
+#studio.dark .vignette::before{opacity:.25}
+#studio.dark .spot.gold{opacity:.85}
+#studio.dark .spot:not(.gold){opacity:0}
+#studio .bigvault{mix-blend-mode:multiply}
+body[data-screen=splash] #studio .bigvault,body[data-screen=setup] #studio .bigvault,body[data-screen=welcome] #studio .bigvault{opacity:.16}
+/* כותרות תלת־ממדיות */
+.title,.logo,.theader h2,.countdown{color:var(--blue);text-shadow:
+  0 2px 0 #0a4fc4,0 4px 0 #0a45ad,0 6px 0 #083a94,0 8px 0 #06307c,0 14px 14px rgba(10,30,100,.4),
+  0 0 0 #fff;-webkit-text-stroke:2px #fff}
+.title small{color:var(--mag);text-shadow:0 2px 0 #9a0f6b,0 4px 0 #7e0c58,0 8px 10px rgba(80,0,60,.35);-webkit-text-stroke:1.5px #fff}
+.logo{color:var(--orange);text-shadow:0 2px 0 #c76a00,0 4px 0 #a85a00,0 6px 0 #8a4a00,0 12px 12px rgba(100,50,0,.4);letter-spacing:.3em}
+.theader h2{font-size:2.1rem;color:var(--blue)}
+.fin h2{color:var(--orange);text-shadow:0 2px 0 #c76a00,0 4px 0 #a85a00,0 6px 0 #8a4a00,0 12px 12px rgba(0,0,0,.5);-webkit-text-stroke:2px #fff}
+.countdown{color:var(--mag);text-shadow:0 3px 0 #9a0f6b,0 6px 0 #7e0c58,0 10px 0 #5e0841,0 18px 24px rgba(80,0,60,.5);-webkit-text-stroke:3px #fff}
+body.dimscr .countdown,body[data-screen=intro] .countdown{ }
+/* שורת עליונה וחתימה: פסי זכוכית כחולים */
+#bar{background:linear-gradient(180deg,#0f55d6,#0a3ca8);border-bottom:4px solid var(--gold);box-shadow:0 6px 20px rgba(10,40,120,.35)}
+#bar .brand{color:var(--gold);text-shadow:0 2px 0 #8a4a00}
+.ibtn{background:linear-gradient(180deg,#ffffff,#dbe7ff);color:var(--blue-dd);border:2px solid #fff;box-shadow:0 3px 0 #082a78;font-weight:800}
+.ibtn:hover{border-color:var(--gold);background:linear-gradient(180deg,#fffbe8,#ffe9a6)}
+.timer{color:#fff}
+.dslot{background:linear-gradient(180deg,#ffffff,#d6e3ff);color:#7b8bbd;border:3px solid #fff;box-shadow:0 4px 0 #082a78,inset 0 -6px 10px rgba(30,70,180,.2)}
+.dslot.got{color:#fff;background:linear-gradient(180deg,#ff4fbd,#c4137e);border-color:#fff;box-shadow:0 4px 0 #7e0c58,0 0 18px rgba(255,80,190,.75);text-shadow:0 2px 0 #7e0c58}
+.sig{color:#fff;background:linear-gradient(0deg,#0a3ca8,#0f55d6);border-top:3px solid var(--gold);padding:5px 10px}
+.sig b{color:var(--gold)}
+/* כפתורים מבריקים */
+.btn{background:linear-gradient(180deg,#4aa0ff 0%,#1673ff 50%,#0a4fc4 51%,#0a45ad 100%);box-shadow:0 5px 0 #06267a,0 10px 18px rgba(10,30,100,.35),inset 0 2px 0 rgba(255,255,255,.55);text-shadow:0 1px 0 rgba(0,0,0,.35);border:2px solid #fff}
+.btn.gold{background:linear-gradient(180deg,#ffe58a 0%,#ffc83a 50%,#f58a07 51%,#ee7d00 100%);color:#4a2600;text-shadow:0 1px 0 rgba(255,255,255,.55);box-shadow:0 5px 0 #a85a00,0 10px 22px rgba(255,150,30,.45),inset 0 2px 0 rgba(255,255,255,.7)}
+.btn.ghost{background:linear-gradient(180deg,#ffffff,#e4ecff);color:var(--blue-dd);text-shadow:none;border:3px solid var(--mag);box-shadow:0 4px 0 var(--mag-d)}
+.btn.big{font-size:1.6rem}
+.link{color:var(--blue-dd);background:rgba(255,255,255,.85);border-radius:20px;padding:6px 16px;text-decoration:none;font-weight:800}
+.choice .btn[aria-pressed=true]{background:linear-gradient(180deg,#ff6fc9,#e0239b 50%,#b0147c 51%,#9a0f6b);outline:5px solid var(--gold)}
+/* שלטי LED ולוחות */
+.led{background:linear-gradient(180deg,#0e58d8,#083a9c);border:6px solid var(--gold);border-radius:26px;
+  box-shadow:0 0 0 4px #fff,0 0 0 9px var(--mag),0 14px 36px rgba(10,30,100,.45),inset 0 0 40px rgba(0,30,120,.5)}
+.led::before{content:"";position:absolute;inset:-22px;border:8px dotted #fff3b0;border-radius:36px;pointer-events:none;filter:drop-shadow(0 0 4px rgba(255,200,60,.9))}
+.led.ok{border-color:var(--green);box-shadow:0 0 0 4px #fff,0 0 0 9px var(--gold),0 0 50px rgba(47,207,122,.6),inset 0 0 40px rgba(47,207,122,.25)}
+.led.bad{border-color:var(--orange);box-shadow:0 0 0 4px #fff,0 0 0 9px var(--orange),0 0 40px rgba(255,157,28,.5)}
+.instr{background:linear-gradient(180deg,#ff9d1c,#f07a00);border:4px solid #fff;border-radius:16px;color:#2a1500;text-shadow:0 1px 0 rgba(255,255,255,.4);box-shadow:0 5px 0 #a85a00,0 0 0 3px #0a45ad;font-size:1.3rem}
+.panel{background:linear-gradient(180deg,#0e58d8,#083a9c);border:6px solid var(--gold);border-radius:26px;box-shadow:0 0 0 4px #fff,0 0 0 9px var(--mag),0 16px 40px rgba(10,30,100,.4)}
+.tnum{background:linear-gradient(180deg,#ff4fbd,#c4137e);border:3px solid #fff;box-shadow:0 3px 0 #7e0c58;text-shadow:0 1px 0 #7e0c58}
+.turn{background:#fff;border:3px solid var(--mag);color:var(--mag-d)}
+.hostname{background:linear-gradient(180deg,#0f55d6,#0a3ca8);color:var(--gold);border:2px solid #fff;border-radius:16px;padding:2px 14px}
+.bubble{border:4px solid #0a45ad;color:#06267a;box-shadow:0 6px 0 rgba(10,40,130,.5)}
+.sigbig{background:linear-gradient(180deg,#0f55d6,#0a3ca8);border:3px solid var(--gold);color:#fff;box-shadow:0 4px 0 #06267a}
+.fb.ok{background:rgba(255,255,255,.96);color:#06401f;border:4px solid var(--green)}
+.fb.bad{background:rgba(255,255,255,.96);color:#5a2c00;border:4px solid var(--orange)}
+.fb.ok .digitpop .big{text-shadow:0 3px 0 #c76a00,0 6px 0 #8a4a00;-webkit-text-stroke:2px #fff;color:var(--orange)}
+.fb .frac,.fb .mixed,.fb .eq{color:inherit}
+.reason,.row3,.tray3,.pool,.setrow,.proofrow{background:rgba(255,255,255,.12)}
+.reason{border-color:rgba(255,255,255,.7)}
+.reason[aria-pressed=true]{background:rgba(255,200,58,.3);border-color:var(--gold)}
+.tray{border-color:rgba(255,255,255,.7)}
+.strip{border-color:#fff}
+.strip .cell.on,.piece{background:repeating-linear-gradient(45deg,#ff5cc4 0 7px,#e0239b 7px 14px)}
+.piece{color:#fff;border-color:#fff;text-shadow:0 1px 0 #7e0c58}
+.stripwrap.whole .strip{border-color:var(--gold)}
+.certtools .note{color:var(--blue-dd);background:rgba(255,255,255,.85);border-radius:12px;padding:4px 12px}
+.certtools label.fld{color:var(--blue-dd);background:rgba(255,255,255,.85);border-radius:12px;padding:4px 12px}
+.agent{background:linear-gradient(180deg,#ff6fc9,#e0239b 50%,#b0147c 51%,#9a0f6b);color:#fff;border:4px solid #fff;text-shadow:0 2px 0 #7e0c58;box-shadow:0 6px 0 #7e0c58,0 0 40px rgba(255,80,190,.6)}
+.vault .body{border-color:#fff}
+.vault .dial{background:radial-gradient(circle,#ffe58a,#f58a07)}
+.fin.on{background:rgba(6,38,122,.88);border:4px solid var(--gold)}
+.rays{mix-blend-mode:normal}
+#modal .box{background:linear-gradient(180deg,#0e58d8,#083a9c)}
+.toast{background:var(--gold)}
+.codeview .dslot{color:var(--blue-dd)}
+.codeview .dslot.got{color:#fff}
+#s-vault .legend,#s-vault #codemsg{color:#fff}

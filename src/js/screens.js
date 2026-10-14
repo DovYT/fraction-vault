@@ -18,7 +18,7 @@
   async function newGame() {
     const ok = await FV.confirm('התחלת משחק חדש?', 'כל ההתקדמות והשמות שנשמרו יימחקו. האם להמשיך?', 'כן, התחילו מחדש', 'ביטול');
     if (!ok) return;
-    FV.resetGame(); FV.updateDigits(); $('#taskRoot').innerHTML = ''; resetVault(); renderSplash(); FV.show('splash'); studio().classList.remove('dark', 'lit'); document.body.classList.remove('intro-lit');
+    FV.resetGame(); FV.updateDigits(); $('#taskRoot').innerHTML = ''; resetVault(); renderSplash(); FV.show('splash'); studio().classList.remove('dark', 'lit', 'dim'); document.body.classList.remove('intro-lit');
   }
   function beginGame() { A.init(); A.musicOn(); st().started = true; FV.save(); if (st().settings.skipIntro) { litStudio(); goSetup(); } else playIntro(); }
   function continueGame() {
@@ -27,11 +27,11 @@
     if (s.won) return showVault(true);
     if (s.done >= 5) return showVault(); startTask(s.done);
   }
-  const litStudio = () => { studio().classList.add('lit'); document.body.classList.add('intro-lit'); };
+  const litStudio = () => { studio().classList.remove('dim'); studio().classList.add('lit'); document.body.classList.add('intro-lit'); };
 
   /* ---------- פתיח 8–12 שניות ---------- */
   async function playIntro() {
-    const tok = ++introToken; const stg = $('#introStage'); FV.show('intro'); stg.innerHTML = '';
+    const tok = ++introToken; const stg = $('#introStage'); FV.show('intro'); stg.innerHTML = ''; studio().classList.add('dim'); studio().classList.remove('lit');
     const alive = () => tok === introToken;
     $('#skipIntro').focus();
     stg.innerHTML = `<div class="countdown" id="cdn" aria-live="assertive"></div>`;
