@@ -52,14 +52,14 @@ t('אפשר לבנות את כל ההזמנות בלי עודף', FV.T5.orders.r
 t('ההזמנות הן 5,1,6,4,8,10 שלישים', eq(FV.T5.orders, [5, 1, 6, 4, 8, 10]));
 
 console.log('מיתוג וחתימה');
-t('חתימה מדויקת', FV.SIGNATURE === 'יפעת ויסמן קרמר | מובילה טכנו פדגוגיה');
+t('חתימה מדויקת', FV.SIGNATURE === 'יפעת וייסמן קרמר | מובילה טכנו פדגוגיה');
 t('שם המותג DIGITAL', FV.BRAND === 'DIGITAL');
 const all = ['index.html', ...readdirSync(join(root, 'src/js')).map((f) => 'src/js/' + f), 'src/index.html', 'src/css/main.css'];
-const sigHits = all.filter((f) => readFileSync(join(root, f), 'utf-8').includes('יפעת ויסמן'));
+const sigHits = all.filter((f) => readFileSync(join(root, f), 'utf-8').includes('יפעת וייסמן'));
 console.log('    מופיע ב:', sigHits.join(', '));
-const stray = all.flatMap((f) => (readFileSync(join(root, f), 'utf-8').match(/יפעת ויסמן[^\n<"']{0,40}/g) || []).map((m) => [f, m]))
-  .filter(([f, m]) => !m.startsWith('יפעת ויסמן קרמר | מובילה טכנו פדגוגיה') && !(f.endsWith('index.html') || true) );
-const variants = new Set(all.flatMap((f) => readFileSync(join(root, f), 'utf-8').match(/יפעת ויסמן קרמר[^\n<"'`]{0,30}/g) || []));
+const stray = all.flatMap((f) => (readFileSync(join(root, f), 'utf-8').match(/יפעת וייסמן[^\n<"']{0,40}/g) || []).map((m) => [f, m]))
+  .filter(([f, m]) => !m.startsWith('יפעת וייסמן קרמר | מובילה טכנו פדגוגיה') && !(f.endsWith('index.html') || true) );
+const variants = new Set(all.flatMap((f) => readFileSync(join(root, f), 'utf-8').match(/יפעת וייסמן קרמר[^\n<"'`]{0,30}/g) || []));
 t('כל ההופעות של החתימה זהות בדיוק', [...variants].every((v) => v.startsWith(FV.SIGNATURE)), [...variants].join(' // '));
 const built = readFileSync(join(root, 'index.html'), 'utf-8');
 t('index.html מכיל data-sig בכל המסכים הנדרשים', ['s-splash', 's-vault', 's-cert'].every((id) => new RegExp(`id="${id}"[\\s\\S]*?data-sig`).test(built)) && built.includes('id="sigbar"'));
